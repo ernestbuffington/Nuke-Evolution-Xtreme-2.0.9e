@@ -1,0 +1,3 @@
+icon_delete
+icon_printer
+icon_report

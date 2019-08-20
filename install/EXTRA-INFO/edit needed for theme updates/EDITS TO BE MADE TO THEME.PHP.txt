@@ -1,0 +1,20 @@
+---- FIND ----
+
+include(NUKE_THEMES_DIR.$theme_name.'/theme_info.php');
+
+---- AFTER, ADD ( if theme is made by TheMortal use this edit ) ----
+
+addCSSToHead('themes/'.$theme_name.'/style/style.css','file');
+addCSSToHead('themes/'.$theme_name.'/style/menu.css','file');
+
+---- AFTER, ADD ( if theme is not made by TheMortal use this edit ) ----
+
+addCSSToHead('themes/'.$theme_name.'/style/style.css','file');
+
+---- SAVE AND UPLOAD ----
+
+Some theme may require more edits, As some theme come with a lot of extra features, So they will require extra files to be included,
+
+If this is the case, We can help you out, All you have to do is PM Corpse or Lonestar and they will be glad to help modify
+your theme to get it back to 100% compatibilty with Evolution Xtreme 2.0.9e.
+

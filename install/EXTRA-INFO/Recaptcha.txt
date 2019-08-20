@@ -1,0 +1,15 @@
+Read all of this before doing it.
+
+Okay, how to set up your recaptcha.
+Once you have your site installed on your server, you will need to get a recaptcha key.
+Please follow the instructions you see in this video.
+
+https://evolution-xtreme.co.uk/modules.php?name=Forums&file=viewtopic&p=47#47
+
+Once you have that done, in the video I say to set up a second account, but that is no longer necessary.
+What you need to do it just point your browser to;
+
+ www.YourSite.com/recap_test.php
+
+If it says that its all good, then delete that file and enjoy. If not, then check your keys and if that failed,
+feel free to contact us for further help.

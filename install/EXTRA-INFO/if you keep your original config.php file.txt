@@ -1,0 +1,13 @@
+----[ OPEN ]----
+
+config.php
+
+----[ FIND ]----
+
+$dbtype
+
+----[ MAKE SURE THE VALUE IS AS FOLLOWS ]----
+
+$dbtype = 'mysqli';
+
+----[ SAVE & UPLOAD]----

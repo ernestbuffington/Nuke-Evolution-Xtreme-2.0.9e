@@ -1,0 +1,41 @@
+--- OPEN theme_info.php ---
+
+--- FIND ---
+
+'Text Color 2'
+
+--- REPLACE WITH ---
+
+'Text Color 2',
+	'Scroll to Top Hover Color',
+	'reCaptcha Skin<br /><span class="textmed">white | dark</span>' 
+
+--- FIND ---
+
+'textcolor2'
+
+--- REPLACE WITH ---
+
+'textcolor2',
+	'uitotophover',
+	'recaptcha_skin'
+
+--- FIND  --- 
+Some themes may not have this exact setting, 
+just add the replacement att he end of the $default array, 
+If you have trouble contact Lonestar or Corpse.
+
+'#000000'
+
+--- REPLACE WITH ---
+
+'#000000',
+	'#4c5a25',
+	'dark'
+
+--- SAVE, UPLOAD & CLEAR SITE CACHE (Some themes may require you to re-install it.) ---
+
+
+This color setting '#1a5270' is for the back to the top button on the lower right part of your screen, 
+this can be change to which ever color you wish, the color here is just a default setting
+

@@ -1,0 +1,14 @@
+modules/Forums/files
+modules/Forums/images/avatars
+modules/Forums/images/forum_icons
+modules/Forums/images/icon
+modules/Forums/images/ranks
+modules/Forums/images/smiles
+
+IF YOU HAVE THE FILE REPOSITORY INSTALLED
+
+modules/File_Repository/files
+
+IF YOU HAVE THE IMAGE REPOSITORY INSTALLED
+
+modules/Image_Repository/files
