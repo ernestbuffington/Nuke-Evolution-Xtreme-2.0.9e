@@ -11,3 +11,5 @@ These open web technologies became the default experience for Chrome late last y
 If you regularly visit a site that uses Flash today, you may be wondering how this affects you. If the site migrates to open web standards, you shouldn’t notice much difference except that you'll no longer see prompts to run Flash on that site. If the site continues to use Flash, and you give the site permission to run Flash, it will work through the end of 2020.<br />
 <br />
 It’s taken a lot of close work with Adobe, other browsers, and major publishers to make sure the web is ready to be Flash-free. We’re NOT supportive of Adobe’s announcement, and we MIGHT stop usng Chrome as a result. Many programmers spent hundreds of hours writing flash games and there just is no reason to 86it completely, it's a brash move on Googles part and is going to upset a lot of people.<br />
+<br />
+With this being said the Flash Arcade in Nuke-Evolution Xtreme will no longer function after the END of 2020.
