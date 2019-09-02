@@ -6,7 +6,7 @@ For 20 years, Flash has helped shape the way that you play games, watch videos a
 <br />
 This trend reveals that sites are migrating to open web technologies, which are faster and more power-efficient than Flash. They’re also more secure, so you can be safer while shopping, banking, or reading sensitive documents. They also work on both mobile and desktop, so you can visit your favorite site anywhere.<br />
 <br />
-These open web technologies became the default experience for Chrome late last year when sites started needing to ask your permission to run Flash. Chrome will continue phasing out Flash over the next few years, first by asking for your permission to run Flash in more situations, and eventually disabling it by default. We will remove Flash completely from Chrome toward the end of 2020.<br />
+These open web technologies became the default experience for Chrome late last year when sites started needing to ask your permission to run Flash. Chrome will continue phasing out Flash over the next few years, first by asking for your permission to run Flash in more situations, and eventually disabling it by default. They will remove Flash completely from Chrome toward the end of 2020.<br />
 <br />
 If you regularly visit a site that uses Flash today, you may be wondering how this affects you. If the site migrates to open web standards, you shouldn’t notice much difference except that you'll no longer see prompts to run Flash on that site. If the site continues to use Flash, and you give the site permission to run Flash, it will work through the end of 2020.<br />
 <br />
