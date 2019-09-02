@@ -1,24 +1,27 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0
  =======================================================================*/
 
-/**************************************************************************/
-/* PHP-NUKE: Advanced Content Management System                           */
-/* ============================================                           */
-/*                                                                        */
-/* This is the language module with all the system messages               */
-/*                                                                        */
-/* If you made a translation go to the my website and send to me          */
-/* the translated file. Please keep the original text order by modules,   */
-/* and just one message per line, also double check your translation!     */
-/*                                                                        */
-/* You need to change the second quoted phrase, not the capital one!      */
-/*                                                                        */
-/* If you need to use double quotes (") remember to add a backslash (\),  */
-/* so your entry will look like: This is \"double quoted\" text.          */
-/* And, if you use HTML code, please double check it.                     */
-/**************************************************************************/
+/************************************************************************/
+/* PHP-NUKE: Web Portal System                                          */
+/* ===========================                                          */
+/*                                                                      */
+/* Copyright (c) 2002 by Francisco Burzi                                */
+/* http://phpnuke.org                                                   */
+/*                                                                      */
+/* This program is free software. You can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation; either version 2 of the License.       */
+/*                                                                      */
+/************************************************************************/
+
+/*****[CHANGES]**********************************************************
+-=[Base]=-
+      Nuke Patched                             v3.1.0       06/26/2005
+	  Titanium Patched                         v3.0.0       08/14/2019
+      Caching System                           v1.0.0       10/31/2005
+ ************************************************************************/
 
 define("_URL","URL");
 define("_EMAIL","Email");

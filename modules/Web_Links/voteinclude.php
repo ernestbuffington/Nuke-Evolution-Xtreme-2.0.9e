@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0
  =======================================================================*/
 
 /************************************************************************/
@@ -10,6 +10,18 @@
 /* Copyright (c) 2002 by Francisco Burzi                                */
 /* http://phpnuke.org                                                   */
 /*                                                                      */
+/* This program is free software. You can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation; either version 2 of the License.       */
+/*                                                                      */
+/************************************************************************/
+
+/*****[CHANGES]**********************************************************
+-=[Base]=-
+      Nuke Patched                             v3.1.0       06/26/2005
+	  Titanium Patched                         v3.0.0       08/14/2019
+ ************************************************************************/
+/************************************************************************/
 /* Based on Journey Links Hack                                          */
 /* Copyright (c) 2000 by James Knickelbein                              */
 /* Journey Milwaukee (http://www.journeymilwaukee.com)                  */
@@ -22,12 +34,6 @@
 /*                           2003 chatserv                              */
 /*      http://www.nukefixes.com -- http://www.nukeresources.com        */
 /************************************************************************/
-
-/*****[CHANGES]**********************************************************
--=[Base]=-
-      Nuke Patched                             v3.1.0       06/26/2005
- ************************************************************************/
-
 if (!defined('MODULE_FILE')) {
    die('You can\'t access this file directly...');
 }
@@ -120,5 +126,4 @@ if ($totalvotesDB == 0) {
     $finalrating = (($avgRU * $impactRU) + ($avgAU * $impactAU) + ($avgOU * $impactOU)) / ($impactRU + $impactAU + $impactOU);
     $finalrating = number_format($finalrating, 4);
 }
-
 ?>

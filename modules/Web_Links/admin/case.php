@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0
  =======================================================================*/
 
 /************************************************************************/
@@ -13,11 +13,14 @@
 /* This program is free software. You can redistribute it and/or modify */
 /* it under the terms of the GNU General Public License as published by */
 /* the Free Software Foundation; either version 2 of the License.       */
+/*                                                                      */
 /************************************************************************/
 
 /*****[CHANGES]**********************************************************
 -=[Base]=-
       Nuke Patched                             v3.1.0       06/26/2005
+	  Titanium Patched                         v3.0.0       08/14/2019
+      Caching System                           v1.0.0       10/31/2005
  ************************************************************************/
 
 if (!defined('ADMIN_FILE')) {
@@ -60,5 +63,4 @@ switch($op) {
     break;
 
 }
-
 ?>

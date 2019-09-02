@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0
  =======================================================================*/
 
 /************************************************************************/
@@ -10,6 +10,20 @@
 /* Copyright (c) 2002 by Francisco Burzi                                */
 /* http://phpnuke.org                                                   */
 /*                                                                      */
+/* This program is free software. You can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation; either version 2 of the License.       */
+/*                                                                      */
+/************************************************************************/
+
+/*****[CHANGES]**********************************************************
+-=[Base]=-
+      Nuke Patched                             v3.1.0       06/26/2005
+	  Titanium Patched                         v3.0.0       08/14/2019
+      Caching System                           v1.0.0       10/31/2005
+ ************************************************************************/
+
+/************************************************************************/
 /* Based on Journey Links Hack                                          */
 /* Copyright (c) 2000 by James Knickelbein                              */
 /* Journey Milwaukee (http://www.journeymilwaukee.com)                  */
@@ -23,12 +37,6 @@
 /*                           2003 chatserv                              */
 /*      http://www.nukefixes.com -- http://www.nukeresources.com        */
 /************************************************************************/
-
-/*****[CHANGES]**********************************************************
--=[Base]=-
-      Nuke Patched                             v3.1.0       06/26/2005
-      Caching System                           v1.0.0       10/31/2005
- ************************************************************************/
 
 if (!defined('MODULE_FILE')) {
    die('You can\'t access this file directly...');
@@ -49,22 +57,27 @@ get_lang($module_name);
 $pagetitle = '- '._WEBLINKS;
 require_once(NUKE_MODULES_DIR.$module_name.'/l_config.php');
 
-function weblinks_parent($parentid,$title) {
+function weblinks_parent($parentid,$title) 
+{
     global $prefix, $db;
     $parentid = intval($parentid);
     $row = $db->sql_fetchrow($db->sql_query("SELECT cid, title, parentid from ".$prefix."_links_categories where cid='$parentid'"));
     $cid = intval($row['cid']);
     $ptitle = stripslashes(check_html($row['title'], "nohtml"));
     $pparentid = intval($row['parentid']);
-    if ($ptitle=="$title") $title=$title;
+    
+	if ($ptitle=="$title") $title=$title;
     elseif (!empty($ptitle)) $title=$ptitle."/".$title;
-    if ($pparentid!=0) {
+
+    if ($pparentid!=0) 
+	{
         $title=weblinks_parent($pparentid,$title);
     }
     return $title;
 }
 
-function weblinks_parentlink($parentid,$title) {
+function weblinks_parentlink($parentid,$title) 
+{
     global $prefix, $db, $module_name;
     $parentid = intval($parentid);
     $row = $db->sql_fetchrow($db->sql_query("SELECT cid, title, parentid from ".$prefix."_links_categories where cid='$parentid'"));
@@ -72,38 +85,43 @@ function weblinks_parentlink($parentid,$title) {
     $ptitle = stripslashes(check_html($row['title'], "nohtml"));
     $pparentid = intval($row['parentid']);
     if (!empty($ptitle)) $title="<a href=modules.php?name=$module_name&amp;l_op=viewlink&amp;cid=$cid>$ptitle</a>/".$title;
-    if ($pparentid!=0) {
+
+    if ($pparentid!=0) 
+	{
         $title=weblinks_parentlink($pparentid,$ptitle);
     }
-    return $title;
+    
+	return $title;
 }
 
-function menu($mainlink) {
+function menu($mainlink) 
+{
     global $module_name, $query;
+   
     OpenTable();
-    $ThemeSel = get_theme();
-    if (file_exists("themes/$ThemeSel/images/link-logo.gif")) {
-    echo "<br /><center><a href=\"modules.php?name=$module_name\"><img src=\"themes/$ThemeSel/images/link-logo.gif\" border=\"0\" alt=\"\"></a><br /><br />";
-    } else {
-    echo "<br /><center><a href=\"modules.php?name=$module_name\"><img src=\"modules/$module_name/images/link-logo.gif\" border=\"0\" alt=\"\"></a><br /><br />";
-    }
-    echo "<form action=\"modules.php?name=$module_name&amp;l_op=search&amp;query=$query\" method=\"post\">"
+    
+	echo '<div align ="center"><a href=\"modules.php?name=$module_name\"><img class="icons" align="absmiddle" src="'.img('link-logo.png','Web_Links').'">'.'</a>';
+	
+	echo "<form action=\"modules.php?name=$module_name&amp;l_op=search&amp;query=$query\" method=\"post\">"
     ."<span class=\"content\"><input type=\"text\" size=\"25\" name=\"query\"> <input type=\"submit\" value=\""._SEARCH."\"></span>"
-    ."</form>";
-    echo "<span class=\"content\">[ ";
-    if ($mainlink>0) {
+    ."</form><br />";
+    
+	echo "<span class=\"content\"><strong>[ ";
+    
+	if ($mainlink>0) 
     echo "<a href=\"modules.php?name=$module_name\">"._LINKSMAIN."</a> | ";
-    }
-    echo "<a href=\"modules.php?name=$module_name&amp;l_op=AddLink\">"._ADDLINK."</a>"
-    ." | <a href=\"modules.php?name=$module_name&amp;l_op=NewLinks\">"._NEW."</a>"
-    ." | <a href=\"modules.php?name=$module_name&amp;l_op=MostPopular\">"._POPULAR."</a>"
-    ." | <a href=\"modules.php?name=$module_name&amp;l_op=TopRated\">"._TOPRATED."</a>"
-    ." | <a href=\"modules.php?name=$module_name&amp;l_op=RandomLink\">"._RANDOM."</a> ]"
-    ."</span></center>";
+    
+    echo "<a href=\"modules.php?name=$module_name&amp;l_op=AddLink\">"._ADDLINK."</a>";
+    echo " | <a href=\"modules.php?name=$module_name&amp;l_op=NewLinks\">"._NEW."</a>";
+    echo " | <a href=\"modules.php?name=$module_name&amp;l_op=MostPopular\">"._POPULAR."</a>";
+    echo " | <a href=\"modules.php?name=$module_name&amp;l_op=TopRated\">"._TOPRATED."</a> ]</strong>";
+    //echo " | <a href=\"modules.php?name=$module_name&amp;l_op=RandomLink\">"._RANDOM."</a> ]";
+    echo "</span></div><br />";
     CloseTable();
 }
 
-function SearchForm() {
+function SearchForm() 
+{
     echo "<form action=\"modules.php?name=$module_name&amp;l_op=search&amp;query=$query\" method=\"post\">"
     ."<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">"
     ."<tr><td><span class=\"content\"><input type=\"text\" size=\"25\" name=\"query\"> <input type=\"submit\" value=\""._SEARCH."\"></td></tr>"
@@ -111,38 +129,46 @@ function SearchForm() {
     ."</form>";
 }
 
-function linkinfomenu($lid, $ttitle) {
+function linkinfomenu($lid, $ttitle) 
+{
     global $module_name, $user;
-    echo "<br /><span class=\"content\">[ "
+    echo "<br /><span class=\"content\"><strong>[ "
     ."<a href=\"modules.php?name=$module_name&amp;l_op=viewlinkcomments&amp;lid=$lid&amp;ttitle=$ttitle\">"._LINKCOMMENTS."</a>"
     ." | <a href=\"modules.php?name=$module_name&amp;l_op=viewlinkdetails&amp;lid=$lid&amp;ttitle=$ttitle\">"._ADDITIONALDET."</a>"
     ." | <a href=\"modules.php?name=$module_name&amp;l_op=viewlinkeditorial&amp;lid=$lid&amp;ttitle=$ttitle\">"._EDITORREVIEW."</a>"
     ." | <a href=\"modules.php?name=$module_name&amp;l_op=modifylinkrequest&amp;lid=$lid\">"._MODIFY."</a>";
-    if (is_user()) {
+
+    if (is_user()) 
     echo " | <a href=\"modules.php?name=$module_name&amp;l_op=brokenlink&amp;lid=$lid\">"._REPORTBROKEN."</a>";
-    }
-    echo " ]</span>";
+
+    echo " ]</span></strong>";
 }
 
-function index() {
+function index() 
+{
     global $prefix, $db;
     include_once(NUKE_BASE_DIR.'header.php');
     $mainlink = 0;
     menu($mainlink);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
-    echo "<center><span class=\"title\"><strong>"._LINKSMAINCAT."</strong></span></center><br />";
+    echo "<div align=\"center\"><span class=\"title\"><strong>"._LINKSMAINCAT."</strong></span></div><br />";
     echo "<table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" align=\"center\"><tr>";
     $result = $db->sql_query("select cid, title, cdescription from ".$prefix."_links_categories where parentid=0 order by title");
     $dum = 0;
     $count = 0;
-    while ($row = $db->sql_fetchrow($result)) {
-    $cid = intval($row['cid']);
-    $title = stripslashes(check_html($row['title'], "nohtml"));
-    $cdescription = stripslashes($row['cdescription']);
-        echo "<td><span class=\"option\"><strong><big>&middot;</big></strong> <a href=\"modules.php?name=Web_Links&amp;l_op=viewlink&amp;cid=$cid\"><strong>$title</strong></a></span>";
-    categorynewlinkgraphic($cid);
-    if ($cdescription) {
+    while ($row = $db->sql_fetchrow($result)) 
+	{
+      $cid = intval($row['cid']);
+      $title = stripslashes(check_html($row['title'], "nohtml"));
+      $cdescription = stripslashes($row['cdescription']);
+      
+	  echo "<td><span class=\"option\"><strong><big>&middot;</big></strong> <a href=\"modules.php?name=Web_Links&amp;l_op=viewlink&amp;cid=$cid\"><strong>$title</strong></a></span>";
+    
+	categorynewlinkgraphic($cid);
+    
+	if ($cdescription) 
+	{
         echo "<br /><span class=\"content\">$cdescription</span><br />";
     } else {
         echo "<br />";
@@ -190,34 +216,46 @@ function AddLink() {
     include_once(NUKE_BASE_DIR.'header.php');
     $mainlink = 1;
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
-    echo "<center><span class=\"title\"><strong>"._ADDALINK."</strong></span></center><br /><br />";
-    if (is_user() || $links_anonaddlinklock == 1) {  /* 06-24-01 Bug fix : changed $links_anonaddlinklock != 1 to $links_anonaddlinklock == 1 */
-        echo "<strong>"._INSTRUCTIONS.":</strong><br />"
-        ."<strong><big>&middot;</big></strong> "._SUBMITONCE."<br />"
-        ."<strong><big>&middot;</big></strong> "._POSTPENDING."<br />"
-        ."<strong><big>&middot;</big></strong> "._USERANDIP."<br />"
-            ."<form method=\"post\" action=\"modules.php?name=$module_name&amp;l_op=Add\">"
-            .""._PAGETITLE.": <input type=\"text\" name=\"title\" size=\"50\" maxlength=\"100\"><br />"
-            .""._PAGEURL.": <input type=\"text\" name=\"url\" size=\"50\" maxlength=\"100\" value=\"http://\"><br />";
+    
+	echo "<div align=\"center\"><span class=\"title\"><strong>"._ADDALINK."</strong></span></div><br /><br />";
+    
+	if (is_user() || $links_anonaddlinklock == 1) 
+	{  /* 06-24-01 Bug fix : changed $links_anonaddlinklock != 1 to $links_anonaddlinklock == 1 */
+        echo "<strong>"._INSTRUCTIONS.":</strong><br />";
+        echo "<strong><big>&middot;</big></strong> "._SUBMITONCE."<br />";
+        echo "<strong><big>&middot;</big></strong> "._POSTPENDING."<br />";
+        echo "<strong><big>&middot;</big></strong> "._USERANDIP."<br /><br />";
+        echo "<form method=\"post\" action=\"modules.php?name=$module_name&amp;l_op=Add\">";
+        
+		echo ""._PAGETITLE.": <input type=\"text\" name=\"title\" size=\"50\" maxlength=\"100\"><br /><br />";
+		
+        echo ""._PAGEURL.": <input type=\"text\" name=\"url\" size=\"50\" maxlength=\"100\" value=\"http://\"><br /><br />";
         echo ""._CATEGORY.": <select name=\"cat\">";
-        $result = $db->sql_query("SELECT cid, title, parentid from ".$prefix."_links_categories order by parentid,title");
-        while ($row = $db->sql_fetchrow($result)) {
-        $cid2 = intval($row['cid']);
-        $ctitle2 = stripslashes(check_html($row['title'], "nohtml"));
-        $parentid2 = intval($row['parentid']);
-            if ($parentid2!=0) $ctitle2=weblinks_parent($parentid2,$ctitle2);
-            echo "<option value=\"$cid2\">$ctitle2</option>";
+        
+		$result = $db->sql_query("SELECT cid, title, parentid from ".$prefix."_links_categories order by parentid,title");
+        
+		while ($row = $db->sql_fetchrow($result)) 
+		{
+          $cid2 = intval($row['cid']);
+          $ctitle2 = stripslashes(check_html($row['title'], "nohtml"));
+          $parentid2 = intval($row['parentid']);
+        
+		  if ($parentid2!=0) $ctitle2=weblinks_parent($parentid2,$ctitle2);
+          echo "<option value=\"$cid2\">$ctitle2</option>";
         }
-        echo "</select><br /><br />"
-            .""._LDESCRIPTION."<br /><textarea name=\"description\" cols=\"60\" rows=\"5\"></textarea><br /><br /><br />"
-            .""._YOURNAME.": <input type=\"text\" name=\"auth_name\" size=\"30\" maxlength=\"60\"><br />"
-            .""._YOUREMAIL.": <input type=\"text\" name=\"email\" size=\"30\" maxlength=\"60\"><br /><br />"
-            ."<table>".security_code(array(7), true, 1)."</table>"
-            ."<input type=\"hidden\" name=\"l_op\" value=\"Add\">"
-            ."<input type=\"submit\" value=\""._ADDURL."\"> "._GOBACK."<br /><br />"
-            ."</form>";
+        
+		echo "</select><br /><br />";
+        echo ""._LDESCRIPTION."<br /><br /><textarea name=\"description\" cols=\"60\" rows=\"5\"></textarea><br /><br /><br />";
+        echo ""._YOURNAME.": <input type=\"text\" name=\"auth_name\" size=\"30\" maxlength=\"60\"><br /><br />";
+        echo ""._YOUREMAIL.": <input type=\"text\" name=\"email\" size=\"30\" maxlength=\"60\"><br /><br />";
+        echo "<table>".security_code(array(0,1,2,3,4,5,6,7), 'normal')."</table><br />";
+        echo "<input type=\"hidden\" name=\"l_op\" value=\"Add\">";
+        echo "<input type=\"submit\" value=\""._ADDURL."\"><br /><br />"._GOBACK."<br /><br />";
+        echo "</form>";
+			
+			
     }else {
         echo "<center>"._LINKSNOTUSER1."<br />"
         .""._LINKSNOTUSER2."<br /><br />"
@@ -239,20 +277,24 @@ function Add($title, $url, $auth_name, $cat, $description, $email) {
 /*****[BEGIN]******************************************
  [ Mod:    Advanced Security Code Control      v1.0.0 ]
  ******************************************************/
-    if (!security_code_check($_POST['gfx_check'], 'force')) {
-        OpenTable();
-        echo '<center>'._GFX_FAILURE.'</center>';
-        CloseTable();
-        include_once(NUKE_BASE_DIR.'footer.php');
-        exit;
-    }
+ 	# Throw an error, If the user fails the reCaptcha.
+	if (!security_code_check($_POST['g-recaptcha-response'], array(0,1,2,3,4,5,6,7))):
+		$error_message[] = $lang_new[$module_name]['reCaptcha'];
+	endif;
+    //if (!security_code_check($_POST['gfx_check'], 'force')) {
+    //    OpenTable();
+    //    echo '<center>'._GFX_FAILURE.'</center>';
+    //    CloseTable();
+    //    include_once(NUKE_BASE_DIR.'footer.php');
+    //    exit;
+    //}
 /*****[END]********************************************
  [ Mod:    Advanced Security Code Control      v1.0.0 ]
  ******************************************************/
     if ($numrows>0) {
         include_once(NUKE_BASE_DIR.'header.php');
         menu(1);
-        echo "<br />";
+        //echo "<br />";
         OpenTable();
         echo "<center><strong>"._LINKALREADYEXT."</strong><br /><br />"
             .""._GOBACK."";
@@ -322,7 +364,7 @@ function Add($title, $url, $auth_name, $cat, $description, $email) {
         }
         include_once(NUKE_BASE_DIR.'header.php');
         menu(1);
-        echo "<br />";
+        //echo "<br />";
         OpenTable();
         echo "<center><strong>"._LINKRECEIVED."</strong><br />";
         if (!empty($email)) {
@@ -340,7 +382,7 @@ function NewLinks($newlinkshowdays) {
     include_once(NUKE_BASE_DIR.'header.php');
     $newlinkshowdays = intval(trim($newlinkshowdays));
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<center><span class=\"option\"><strong>"._NEWLINKS."</strong></span></center><br />";
     $counter = 0;
@@ -394,7 +436,7 @@ function NewLinksDate($selectdate) {
     $dateView = (date("F d, Y", $selectdate));
     include_once(NUKE_BASE_DIR.'header.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     $newlinkDB = Date("Y-m-d", $selectdate);
     $totallinks = $db->sql_numrows($db->sql_query("SELECT * FROM ".$prefix."_links_links WHERE date LIKE '%$newlinkDB%'"));
@@ -465,7 +507,7 @@ function TopRated($ratenum, $ratetype) {
     include_once(NUKE_BASE_DIR.'header.php');
     include(NUKE_MODULES_DIR.$module_name.'/l_config.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<table border=\"0\" width=\"100%\"><tr><td align=\"center\">";
     if (!empty($ratenum) && !empty($ratetype)) {
@@ -559,7 +601,7 @@ function MostPopular($ratenum, $ratetype) {
     include_once(NUKE_BASE_DIR.'header.php');
     include(NUKE_MODULES_DIR.$module_name.'/l_config.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<table border=\"0\" width=\"100%\"><tr><td align=\"center\">";
     if (!empty($ratenum) && !empty($ratetype)) {
@@ -652,13 +694,18 @@ function MostPopular($ratenum, $ratetype) {
     include_once(NUKE_BASE_DIR.'footer.php');
 }
 
-function RandomLink() {
+function RandomLink()
+ {
     global $prefix, $db;
     $result = $db->sql_query("SELECT * from ".$prefix."_links_links");
     $numrows = $db->sql_numrows($result);
-    if ($numrows == 1) {
+
+    if ($numrows == 1) 
+	{
     $random = 1;
-    } else {
+    } 
+	else 
+	{
     srand((double)microtime()*1000000);
     $random = rand(1,$numrows);
         $random = intval($random);
@@ -680,11 +727,26 @@ function viewlink($cid, $min, $orderby, $show) {
         $orderby = htmlspecialchars($orderby);
     }
     include_once(NUKE_BASE_DIR.'header.php');
-    if (!isset($min)) $min=0;
-    if (!isset($max)) $max=$min+$perpage;
-    if(!empty($orderby)) {
+    
+	if ($min == '')
+	$min=0;
+
+	if ($max == '')
+	$max=0;
+	
+	if (!isset($min)) 
+	$min=0;
+
+    
+	if (!isset($max)) 
+	$max=$min+$perpage;
+    
+	if(!empty($orderby)) 
+	{
         $orderby = convertorderbyin($orderby);
-    } else {
+    } 
+	else 
+	{
         $orderby = "title ASC";
     }
     if (!empty($show)) {
@@ -693,7 +755,7 @@ function viewlink($cid, $min, $orderby, $show) {
         $show=$perpage;
     }
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     $cid = intval($cid);
     $row_two = $db->sql_fetchrow($db->sql_query("SELECT title,parentid FROM ".$prefix."_links_categories WHERE cid='$cid'"));
@@ -1008,7 +1070,7 @@ function search($query, $min, $orderby, $show) {
     $the_query = stripslashes($query);
     $the_query = str_replace("\'", "'", $the_query);
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     if ($query != "") {
         if ($nrows>0) {
@@ -1165,7 +1227,7 @@ function viewlinkeditorial($lid, $ttitle) {
     $ttitle = htmlentities($ttitle);
     $transfertitle = str_replace ("_", " ", $ttitle);
     $displaytitle = $transfertitle;
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<center><span class=\"option\"><strong>"._LINKPROFILE.": ".htmlentities($displaytitle)."</strong></span><br />";
     linkinfomenu($lid, $ttitle);
@@ -1213,7 +1275,7 @@ function viewlinkcomments($lid, $ttitle) {
     include(NUKE_MODULES_DIR.$module_name.'/l_config.php');
     menu(1);
     $lid = intval(trim($lid));
-    echo "<br />";
+    //echo "<br />";
     $result = $db->sql_query("SELECT ratinguser, rating, ratingcomments, ratingtimestamp FROM ".$prefix."_links_votedata WHERE ratinglid = '$lid' AND ratingcomments != '' ORDER BY ratingtimestamp DESC");
     $totalcomments = $db->sql_numrows($result);
     $ttitle = htmlentities($ttitle);
@@ -1463,7 +1525,7 @@ function viewlinkdetails($lid, $ttitle) {
     $ttitle = htmlentities($ttitle);
     $transfertitle = str_replace ("_", " ", $ttitle);
     $displaytitle = $transfertitle;
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<center><span class=\"option\"><strong>"._LINKPROFILE.": ".htmlentities($displaytitle)."</strong></span><br /><br />";
     linkinfomenu($lid, $ttitle);
@@ -1636,7 +1698,7 @@ function outsidelinksetup($lid) {
     include_once(NUKE_BASE_DIR.'header.php');
     include(NUKE_MODULES_DIR.$module_name.'/l_config.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<center><span class=\"option\"><strong>"._PROMOTEYOURSITE."</strong></span></center><br /><br />
 
@@ -1754,7 +1816,7 @@ function brokenlink($lid) {
     $ratinguser = $cookie[1];
     menu(1);
         $lid = intval($lid);
-    echo "<br />";
+    //echo "<br />";
     $row = $db->sql_fetchrow($db->sql_query("SELECT cid, title, url, description from ".$prefix."_links_links where lid='$lid'"));
     $cid = intval($row['cid']);
     $title = stripslashes(check_html($row['title'], "nohtml"));
@@ -1816,7 +1878,7 @@ function modifylinkrequest($lid) {
         $ratinguser = $anonymous;
     }
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     $blocknow = 0;
     $lid = intval(trim($lid));
@@ -1876,7 +1938,7 @@ function modifylinkrequestS($lid, $cat, $title, $url, $description, $modifysubmi
     if ($blockunregmodify == 1 && $ratinguser=="$anonymous") {
     include_once(NUKE_BASE_DIR.'header.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     echo "<center><span class=\"content\">"._ONLYREGUSERSMODIFY."</span></center>";
     $blocknow = 1;
@@ -1905,7 +1967,7 @@ function modifylinkrequestS($lid, $cat, $title, $url, $description, $modifysubmi
  ******************************************************/
         include_once(NUKE_BASE_DIR.'header.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
         echo "<center><span class=\"content\">"._THANKSFORINFO." "._LOOKTOREQUEST."</span></center>";
         CloseTable();
@@ -1924,6 +1986,8 @@ function rateinfo($lid) {
 
 function addrating($ratinglid, $ratinguser, $rating, $ratinghost_name, $ratingcomments) {
     global $prefix, $db, $cookie, $user, $module_name, $anonymous;
+    global $prefix, $db, $name, $board_config, $userinfo, $identify;
+
     $passtest = "yes";
     include_once(NUKE_BASE_DIR.'header.php');
     include(NUKE_MODULES_DIR.$module_name.'/l_config.php');
@@ -1940,9 +2004,12 @@ function addrating($ratinglid, $ratinguser, $rating, $ratinghost_name, $ratingco
     while ($row = $db->sql_fetchrow($result)) {
     $title = stripslashes(check_html($row['title'], "nohtml"));
     $ttitle = $title;
+
     /* Make sure only 1 anonymous from an IP in a single day. */
-    $ip = identify::get_ip();
+	//$ip = identify::get_ip();
+    $ip = $identify->get_ip(); //fixed by Ernest Allen Buffingtn 08/09/2019
     /* Check if Rating is Null */
+
     if ($rating=="--") {
     $error = "nullerror";
         completevote($error);
@@ -2027,7 +2094,7 @@ function addrating($ratinglid, $ratinguser, $rating, $ratinghost_name, $ratingco
 
 function completevoteheader(){
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
 }
 
@@ -2065,7 +2132,7 @@ function ratelink($lid, $user, $ttitle) {
     global $prefix, $cookie, $datetime, $module_name, $identify;
     include_once(NUKE_BASE_DIR.'header.php');
     menu(1);
-    echo "<br />";
+    //echo "<br />";
     OpenTable();
     $ttitle = htmlentities($ttitle);
     $transfertitle = str_replace ("_", " ", $ttitle);
@@ -2230,5 +2297,4 @@ switch($l_op) {
     break;
 
 }
-
 ?>

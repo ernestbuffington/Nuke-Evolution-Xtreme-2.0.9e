@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0
  =======================================================================*/
 
 /************************************************************************/
@@ -10,27 +10,24 @@
 /* Copyright (c) 2002 by Francisco Burzi                                */
 /* http://phpnuke.org                                                   */
 /*                                                                      */
-/* Based on Journey Links Hack                                          */
-/* Copyright (c) 2000 by James Knickelbein                              */
-/* Journey Milwaukee (http://www.journeymilwaukee.com)                  */
-/*                                                                      */
 /* This program is free software. You can redistribute it and/or modify */
 /* it under the terms of the GNU General Public License as published by */
 /* the Free Software Foundation; either version 2 of the License.       */
 /*                                                                      */
 /************************************************************************/
+
+/*****[CHANGES]**********************************************************
+      Nuke Patched                             v3.1.0       06/26/2005
+	  Titanium Patched                         v3.0.0       08/14/2019
+      Caching System                           v1.0.0       10/31/2005
+      Admin Web Links Dropdown                 v1.0.0       06/11/2005
+ ************************************************************************/
+
+/************************************************************************/
 /*         Additional security & Abstraction layer conversion           */
 /*                           2003 chatserv                              */
 /*      http://www.nukefixes.com -- http://www.nukeresources.com        */
 /************************************************************************/
-
-/*****[CHANGES]**********************************************************
--=[Base]=-
-      Nuke Patched                             v3.1.0       06/26/2005
-      Caching System                           v1.0.0       10/31/2005
--=[Mod]=-
-      Admin Web Links Dropdown                 v1.0.0       06/11/2005
- ************************************************************************/
 
 	if (!defined('ADMIN_FILE')) 
 	{

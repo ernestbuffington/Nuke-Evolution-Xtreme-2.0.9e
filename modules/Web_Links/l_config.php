@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0
  =======================================================================*/
 
 /************************************************************************/
@@ -10,6 +10,19 @@
 /* Copyright (c) 2002 by Francisco Burzi                                */
 /* http://phpnuke.org                                                   */
 /*                                                                      */
+/* This program is free software. You can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation; either version 2 of the License.       */
+/*                                                                      */
+/************************************************************************/
+
+/*****[CHANGES]**********************************************************
+-=[Base]=-
+      Nuke Patched                             v3.1.0       06/26/2005
+	  Titanium Patched                         v3.0.0       08/14/2019
+ ************************************************************************/
+ 
+/************************************************************************/
 /* Based on Journey Links Hack                                          */
 /* Copyright (c) 2000 by James Knickelbein                              */
 /* Journey Milwaukee (http://www.journeymilwaukee.com)                  */
@@ -47,5 +60,4 @@ $mostpoplinks = 25;                  //Either # of links OR percentage to show (
 $featurebox = 1;                     //1 to Show Feature Link Box on links Main Page? (1=Yes 0=No)
 $linkvotemin = 5;                    //Number votes needed to make the 'top 10' list
 $blockunregmodify = 1;               //Block unregistered users from suggesting links changes? (1=Yes 0=No)
-
 ?>
