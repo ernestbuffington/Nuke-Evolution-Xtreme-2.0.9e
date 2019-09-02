@@ -1013,6 +1013,19 @@ function ads($position) {
  * functions added to support dynamic and ordered loading of CSS and JS in <HEAD> and before </BODY>
  * Code origin Raven Nuke CMS (http://www.ravenphpscripts.com)
  */
+
+# START for Titanium Theme Support by Ernest Buffington - 09/02/2019
+function addPHPCSSToHead($content, $type='file')
+{
+    global $headPHPCSS;
+    // Duplicate external file?
+    if (($type == 'file') && (is_array($headPHPCSS) && count($headPHPCSS) > 0) && (in_array(array($type, $content), $headPHPCSS))) return;
+    $headPHPCSS[] = array($type, $content);
+    return;
+}
+# END for Titanium Theme Support by Ernest Buffington - 09/02/2019
+
+ 
 function addCSSToHead($content, $type='file') 
 {
     global $headCSS;
@@ -1042,8 +1055,30 @@ function addJSToBody($content, $type='file')
 
 function writeHEAD() 
 {
-    global $headCSS, $headJS;
-    if (is_array($headCSS) && count($headCSS) > 0) 
+    global $headPHPCSS, $headCSS, $headJS;
+    
+    # START for Titanium Theme Support by Ernest Buffington - 09/02/2019
+	if (is_array($headPHPCSS) && count($headPHPCSS) > 0) 
+    {
+        foreach($headPHPCSS AS $php) 
+        {
+            if ($php[0]=='file') 
+            {
+				echo "<style type=\"text/css\">\n";
+                include($php[1]);
+				echo "</style>\n";
+            } 
+			else 
+			{
+				echo "<style type=\"text/css\">\n";
+                include($php[1]);
+				echo "</style>\n"; 
+            }
+        }
+    }
+    # END for Titanium Theme Support by Ernest Buffington - 09/02/2019
+	
+	if (is_array($headCSS) && count($headCSS) > 0) 
     {
         foreach($headCSS AS $css) 
         {

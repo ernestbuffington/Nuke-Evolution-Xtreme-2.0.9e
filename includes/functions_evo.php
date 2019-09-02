@@ -1227,5 +1227,4 @@ function evo_mail_batch($array_recipients){
     }
     return $recipients;
 }
-
 ?>

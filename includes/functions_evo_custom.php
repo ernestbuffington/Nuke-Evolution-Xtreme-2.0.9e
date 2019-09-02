@@ -1,4 +1,7 @@
 <?php
+/*=======================================================================
+ Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ =======================================================================*/
 
 function evo_phpmailer( $to, $subject, $message, $headers = '', $attachments = array() )
 {
@@ -724,7 +727,7 @@ function get_evo_option($name, $type='string')
 }
 
 /**
- * Custom function: This will be used quite alot throughout the site, For such things as CMS, Block, Module & Theme version chekcing. 
+ * Custom function: This will be used quite alot throughout the site, For such things as CMS, Block, Module & Theme version checking. 
  * @since 2.0.9e
  */
 function get_version_information($version_check_url, $local_cache_location, $force_refresh=false) 
@@ -794,5 +797,4 @@ function get_timeago( $ptime )
         }
     }
 }
-
 ?>
