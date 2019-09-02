@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
 
 /************************************************************************
@@ -22,7 +22,8 @@ if(!defined('NUKE_EVO')) {
 
 global $evouserinfo_login, $lang_evo_userblock;
 
-function evouserinfo_login () {
+function evouserinfo_login () 
+{
    global $lang_evo_userblock, $evouserinfo_login;
    
     mt_srand ((double)microtime()*1000000);
@@ -40,6 +41,7 @@ function evouserinfo_login () {
     //Login
     $evouserinfo_login .= $lang_evo_userblock['BLOCK']['LOGIN']['USERNAME']."<br /><input type=\"text\" name=\"username\" size=\"15\" maxlength=\"25\"></td></tr>\n";
     $evouserinfo_login .= "<tr><td align=\"center\">".$lang_evo_userblock['BLOCK']['LOGIN']['PASSWORD']."<br /><input type=\"password\" name=\"user_password\" size=\"15\" maxlength=\"20\">\n";
+
     /*****[BEGIN]******************************************
     [ Mod:     Advanced Security Code Control     v1.0.0 ]
     ******************************************************/
@@ -48,17 +50,26 @@ function evouserinfo_login () {
     /*****[END]********************************************
     [ Mod:     Advanced Security Code Control     v1.0.0 ]
     ******************************************************/
+
     $evouserinfo_login .= "</td><td align=\"center\">";
-    if(!empty($redirect)) {
+
+    if(!empty($redirect)) 
+	{
        $evouserinfo_login .= "<input type=\"hidden\" name=\"redirect\" value=\"$redirect\">\n";
     }
-    if(!empty($mode)) {
+    
+	if(!empty($mode)) 
+	{
        $evouserinfo_login .= "<input type=\"hidden\" name=\"mode\" value=\"$mode\">\n";
     }
-    if(!empty($f)) {
+    
+	if(!empty($f)) 
+	{
        $evouserinfo_login .= "<input type=\"hidden\" name=\"f\" value=\"$f\">\n";
     }
-    if(!empty($t)) {
+    
+	if(!empty($t)) 
+	{
        $evouserinfo_login .= "<input type=\"hidden\" name=\"t\" value=\"$t\">\n";
     }
     $evouserinfo_login .= "<input type=\"hidden\" name=\"op\" value=\"login\"></td></tr>\n";
