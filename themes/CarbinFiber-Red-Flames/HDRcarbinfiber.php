@@ -129,7 +129,7 @@ echo '<pre>'.' '.'</pre>';
 
 # start 3rd line of header
 if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
-echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>Great Minds Do Not Think Alike</h3></div>';
+echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>An Organized Social Syndicate</h3></div>';
 else
 echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>Great Minds Do Not Think Alike</h3></div>';
 # end 3rd line of header
