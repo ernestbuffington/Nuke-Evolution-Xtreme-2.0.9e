@@ -97,7 +97,7 @@ define("_POLLRANDOM", "Show a random Survey");
 // define("_TRACKER_HEAD_MSG","Message");
 
 // define("_TRACKER_UP","UPDATED");
-// define("_TRACKER_BACK","Back");
+define("_TRACKER_BACK","Back");
 // define("_TRACKER_CLEAR", "Clear Log");
 
 // define("_TRACKER_ERR_OPEN","Failed to open admin.log");
@@ -111,25 +111,25 @@ define("_POLLRANDOM", "Show a random Survey");
 /*****[BEGIN]******************************************
  [ Mod:     Evolution Version Checker          v1.0.0 ]
  ******************************************************/
-// define("_ADMIN_VER_TITLE","Nuke-Evolution Xtreme Version Checker");
-// define("_ADMIN_VER_ERRCON","Could not connect to www.evolution-xtreme.com");
-// define("_ADMIN_VER_ERRSQL","Could not retrieve version from Database");
-// define("_ADMIN_VER_CHG","There is a new version of Evolution-Xtreme");
-// define("_ADMIN_VER_VIEW","View New Version");
-// define("_ADMIN_VER_CUR","Your version is current");
-// define("_CHECKVER", "Click Here to check version");
-// define("_VER_ERR_CON","Could not connect to <a href='http://www.evolution-xtreme.com'>Evolution-Xtreme</a>");
-// define("_VER_ERR_CHG","There was a problem with accessing the Changed Log");
-// define("_VER_TITLE","Nuke-Evolution Xtreme Version");
-// define("_VER_VER","The current version is:");
-// define("_VER_YOURVER","Your version is:");
-// define("_VER_CHGLOG","Evolution-Xtreme Version Changed Log");
-// define('_VERSIONUP2DATE', 'Your installation is up to date, no updates are available for your version of Evolution-Xtreme.');
-// define('_VERSIONOUTOFDATE', 'Your installation does <strong>not</strong> seem to be up to date. Updates are available for your version of Evolution-Xtreme, please visit <a href="http://www.evolution-xtreme.com/modules.php?name=Downloads" target="_new">http://www.evolution-xtreme.com/modules.php?name=Downloads</a> to obtain the latest version.');
-// define('_VERSIONLATESTINFO', 'The latest available version is <strong>Evolution-Xtreme %s</strong>.');
-// define('_VERSIONCURRENTINFO', 'You are running <strong>Evolution-Xtreme %s</strong>.');
-// define('_VERSIONSOCKETERROR', 'Unable to open connection to Evolution-Xtreme Server, reported error is:<br />%s');
-// define('_VERSIONFUNCTIONSDISABLED', 'Unable to use socket functions.');
+define("_ADMIN_VER_TITLE","Nuke-Evolution Xtreme Version Checker");
+define("_ADMIN_VER_ERRCON","Could not connect to www.evolution-xtreme.com");
+define("_ADMIN_VER_ERRSQL","Could not retrieve version from Database");
+define("_ADMIN_VER_CHG","There is a new version of Evolution-Xtreme");
+define("_ADMIN_VER_VIEW","View New Version");
+define("_ADMIN_VER_CUR","Your version is current");
+define("_CHECKVER", "Click Here to check version");
+define("_VER_ERR_CON","Could not connect to <a href='http://www.evolution-xtreme.com'>Evolution-Xtreme</a>");
+define("_VER_ERR_CHG","There was a problem with accessing the Changed Log");
+define("_VER_TITLE","Nuke-Evolution Xtreme Version");
+define("_VER_VER","The current version is:");
+define("_VER_YOURVER","Your version is:");
+define("_VER_CHGLOG","Evolution-Xtreme Version Changed Log");
+define('_VERSIONUP2DATE', 'Your installation is up to date, no updates are available for your version of Evolution-Xtreme.');
+define('_VERSIONOUTOFDATE', 'Your installation does <strong>not</strong> seem to be up to date. Updates are available for your version of Evolution-Xtreme, please visit <a href="http://www.evolution-xtreme.com/modules.php?name=Downloads" target="_new">http://www.evolution-xtreme.com/modules.php?name=Downloads</a> to obtain the latest version.');
+define('_VERSIONLATESTINFO', 'The latest available version is <strong>Evolution-Xtreme %s</strong>.');
+define('_VERSIONCURRENTINFO', 'You are running <strong>Evolution-Xtreme %s</strong>.');
+define('_VERSIONSOCKETERROR', 'Unable to open connection to Evolution-Xtreme Server, reported error is:<br />%s');
+define('_VERSIONFUNCTIONSDISABLED', 'Unable to use socket functions.');
 /*****[END]********************************************
  [ Mod:     Evolution Version Checker          v1.0.0 ]
  ******************************************************/
