@@ -123,6 +123,149 @@ if (isset($_COOKIE['DONATION'])) {
     header($type . 'modules.php?name=Donations&op=thankyou');
 }
 
+# absolute path Mod - Start  01/01/2012 by Ernest Allen Buffington                                                                                                    #       
+$rel_path=array();
+$rel_path['file']   = str_replace('\\', "/", realpath(dirname(__FILE__)));
+$server_ary         = pathinfo(realpath(basename($_SERVER['PHP_SELF'])));
+$rel_path['server'] = str_replace('\\', "/", $server_ary['dirname']);
+$rel_path['uri']    = realpath(basename(substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?'))));
+$script_abs_path    = pathinfo(realpath($_SERVER['SCRIPT_FILENAME']));
+$rel_path['script'] = str_replace('\\', "/",$script_abs_path['dirname']);
+
+if ( ($rel_path['file'] == $rel_path['script']) && (strlen($_SERVER['DOCUMENT_ROOT']) < strlen($script_abs_path['dirname'])) ) 
+{
+    $href_path = '/'.str_replace($_SERVER['DOCUMENT_ROOT'], '', $rel_path['script'] );
+
+    if ( substr($href_path, 0, 2) == '//') 
+	{
+        $href_path = substr($href_path, 1);
+    }
+} 
+else
+if (strlen($rel_path['file']) == (strlen($_SERVER['DOCUMENT_ROOT']) - 1) ) 
+{
+    $href_path = '';
+} 
+else
+if ( strlen($rel_path['script']) > strlen($_SERVER['DOCUMENT_ROOT']) && (strlen($_SERVER['DOCUMENT_ROOT']) > strlen($rel_path['file'])) ) 
+{
+    $href_path = '';
+} 
+else
+if (strlen($rel_path['file']) > strlen($_SERVER['DOCUMENT_ROOT'])) 
+{
+    $href_path = '/'.str_replace($_SERVER['DOCUMENT_ROOT'], '', $rel_path['file']);
+    if ( substr($href_path, 0, 2) == '//') {
+        $href_path = substr($href_path, 1);
+    }
+} 
+else 
+{
+    $href_path='https://'.$_SERVER['SERVER_NAME'];
+	$href_path_http='http://'.$_SERVER['SERVER_NAME'];
+}
+
+unset ($rel_path);
+unset ($server_ary);
+unset ($script_abs_path);
+
+# BASE Directory
+define('TITANIUM_BASE_DIR', dirname(__FILE__) . '/');
+
+# HTTP & HTTPS
+define('HTTPS', $href_path . '/');
+define('HTTP', $href_path_http . '/');
+
+# HTPPS for Titanium Network
+define('HTTPS-MUSIC', 'https://music.86it.us/');
+
+# Modules Directory
+define('MODULES', TITANIUM_BASE_DIR . 'modules/');
+
+# ADMIN Directory
+define('TITANIUM_ADMIN_DIR', TITANIUM_BASE_DIR . 'admin/'); 
+define('TITANIUM_ADMIN_MODULE_DIR', TITANIUM_ADMIN_DIR . 'modules/');
+
+# INCLUDES Directories
+define('TITANIUM_INCLUDE_DIR', TITANIUM_BASE_DIR . 'includes/');
+define('TITANIUM_INCLUDE_HREF_DIR', $href_path . '/includes/');
+
+# CSS Directory
+define('TITANIUM_CSS_DIR', TITANIUM_INCLUDE_DIR . 'css/');
+
+# CERT Directory
+define('TITANIUM_CERT_DIR', TITANIUM_INCLUDE_DIR . 'certs'); // pem directory
+
+# GLOBAL CSS DIR
+define('TITANIUM_CSS_HREF_DIR', $href_path . '/includes/css/');
+
+# lytebox
+define('TITANIUM_LYTEBOX_HREF_DIR', $href_path . '/includes/lytebox/');
+
+# lightbox
+define('TITANIUM_LIGHTBOX_HREF_DIR', $href_path . '/includes/lightbox/');
+
+# cache
+define('TITANIUM_CACHE_DIR', TITANIUM_INCLUDE_DIR . 'cache/');
+
+# classes
+define('TITANIUM_CLASSES_DIR', TITANIUM_INCLUDE_DIR . 'classes/');
+
+# DB Directory
+define('TITANIUM_DB_DIR', TITANIUM_INCLUDE_DIR . 'db/');
+
+# MODULES Directory
+define('TITANIUM_HREF_MODULES_DIR', $href_path . '/modules/'); 
+define('TITANIUM_MODULES_DIR', TITANIUM_BASE_DIR . 'modules/');
+define('TITANIUM_MODULES_IMAGE_DIR', $href_path . '/modules/');
+
+# Coppermine Directory
+define('TITANIUM_HREF_COPPERMINE_DIR', $href_path . '/modules/Coppermine/'); 
+define('TITANIUM_COPPERMINE_DIR', TITANIUM_BASE_DIR . 'modules/Coppermine/');
+define('TITANIUM_COPPERMINE_IMAGES_DIR', $href_path . '/modules/Coppermine/images/');
+
+# Coppermine Include Directory
+define('TITANIUM_HREF_COPPERMINE_INCLUDE_DIR', $href_path . '/modules/Coppermine/include/'); 
+define('TITANIUM_COPPERMINE_INCLUDE_DIR', TITANIUM_BASE_DIR . 'modules/Coppermine/include/');
+
+# Coppermine Java Script Directory
+define('TITANIUM_HREF_COPPERMINE_JS_DIR', $href_path . '/modules/Coppermine/js/'); 
+define('TITANIUM_COPPERMINE_JS_DIR', TITANIUM_BASE_DIR . 'modules/Coppermine/js/');
+
+# Coppermine Docs Directory
+define('TITANIUM_HREF_COPPERMINE_DOCS_DIR', $href_path . '/modules/Coppermine/docs/'); 
+define('TITANIUM_COPPERMINE_DOCS_DIR', TITANIUM_BASE_DIR . 'modules/Coppermine/docs/');
+
+# Coppermine Fonts Directory
+define('TITANIUM_HREF_COPPERMINE_FONTS_DIR', $href_path . '/modules/Coppermine/images/fonts/'); 
+define('TITANIUM_COPPERMINE_FONTS_DIR', TITANIUM_BASE_DIR . 'modules/Coppermine/images/fonts/');
+
+# BLOCKS Directory
+define('TITANIUM_BLOCKS_DIR', TITANIUM_BASE_DIR . 'blocks/');
+
+# IMAGES Directory
+define('TITANIUM_IMAGES_DIR', TITANIUM_BASE_DIR . '/images/');
+define('TITANIUM_IMAGES_BASE_DIR', $href_path . '/images/');
+
+# LANGUAGE Directory
+define('TITANIUM_LANGUAGE_DIR', TITANIUM_BASE_DIR . 'language/');
+define('TITANIUM_LANGUAGE_CUSTOM_DIR', TITANIUM_LANGUAGE_DIR . 'custom/');
+
+# STYLE Directory
+define('TITANIUM_THEMES_DIR', TITANIUM_BASE_DIR . 'themes/');
+define('TITANIUM_THEMES_IMAGE_DIR', $href_path . '/themes/');
+define('TITANIUM_THEMES_MAIN_DIR',  $href_path . '/themes/');
+
+# FORUMS Directory
+define('TITANIUM_FORUMS_DIR', TITANIUM_MODULES_DIR . 'Forums/');
+define('TITANIUM_FORUMS_ADMIN_DIR', TITANIUM_FORUMS_DIR . 'admin/');
+define('TITANIUM_FORUMS_ADMIN_HREF_DIR', $href_path . '/modules/Forums/admin/');
+
+# OTHER Directories
+define('TITANIUM_RSS_DIR', TITANIUM_INCLUDE_DIR . 'rss/');
+define('TITANIUM_STATS_DIR', TITANIUM_THEMES_DIR);
+# aboslute path Mod - End  01/01/2012 by Ernest Allen Buffington                                                                                                      #
+
 //Inspired by phoenix-cms at website-portals.net
 //Absolute Nuke directory
 define('NUKE_BASE_DIR', dirname(__FILE__) . '/');
@@ -236,6 +379,10 @@ if (GZIPSUPPORT && !ini_get('zlib.output_compression') && isset($_SERVER['HTTP_A
 include_once(NUKE_INCLUDE_DIR.'constants.php');
 @require_once(NUKE_CLASSES_DIR.'class.cache.php');
 @require_once(NUKE_CLASSES_DIR.'class.debugger.php');
+
+# added for Titanium Modules support - Ernest Allen Buffington 09/02/2019
+require_once(NUKE_INCLUDE_DIR.'function_img.php'); 
+
 require_once(NUKE_INCLUDE_DIR.'functions_evo.php');
 require_once(NUKE_INCLUDE_DIR.'functions_evo_custom.php');
 include_once(NUKE_INCLUDE_DIR.'validation.php');
