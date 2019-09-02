@@ -83,7 +83,7 @@ if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
 ############################################################################################################################################
 function img($imgfile='', $mymodule='', $empty=true) 
 {
-    global $currentlang, $ThemeSel, $titanium_config, $cache;
+    global $currentlang, $ThemeSel, $Default_Theme;
     
 	if (@file_exists(TITANIUM_THEMES_DIR . $ThemeSel . '/images/' . $mymodule . '/lang_' . $currentlang . '/' . $imgfile)) 
 	{
@@ -105,24 +105,24 @@ function img($imgfile='', $mymodule='', $empty=true)
         $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$ThemeSel."/images/$imgfile";
     } 
 	else
-	if (@file_exists(TITANIUM_THEMES_DIR . $titanium_config['default_Theme'] . '/images/' . $mymodule . '/lang_' . $currentlang . '/' . $imgfile)) 
+	if (@file_exists(TITANIUM_THEMES_DIR . $Default_Theme . '/images/' . $mymodule . '/lang_' . $currentlang . '/' . $imgfile)) 
 	{
-        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$titanium_config['default_Theme']."/images/$mymodule/lang_".$currentlang."/$imgfile";
+        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$Default_Theme."/images/$mymodule/lang_".$currentlang."/$imgfile";
     } 
 	else
-	if (@file_exists(TITANIUM_THEMES_DIR . $titanium_config['default_Theme'] . '/images/lang_' . $currentlang . '/' . $imgfile)) 
+	if (@file_exists(TITANIUM_THEMES_DIR . $Default_Theme . '/images/lang_' . $currentlang . '/' . $imgfile)) 
 	{
-        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$titanium_config['default_Theme']."/images/lang_".$currentlang."/$imgfile";
+        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$Default_Theme."/images/lang_".$currentlang."/$imgfile";
     } 
 	else
-	if (@file_exists(TITANIUM_THEMES_DIR . $titanium_config['default_Theme'] . '/images/' . $mymodule . '/' . $imgfile)) 
+	if (@file_exists(TITANIUM_THEMES_DIR . $Default_Theme . '/images/' . $mymodule . '/' . $imgfile)) 
 	{
-        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$titanium_config['default_Theme']."/images/$mymodule/$imgfile";
+        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$Default_Theme."/images/$mymodule/$imgfile";
     } 
 	else
-	if (@file_exists(TITANIUM_THEMES_DIR . $titanium_config['default_Theme'] . '/images/' . $imgfile)) 
+	if (@file_exists(TITANIUM_THEMES_DIR . $Default_Theme . '/images/' . $imgfile)) 
 	{
-        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$titanium_config['default_Theme']."/images/$imgfile";
+        $titanium_image = TITANIUM_THEMES_IMAGE_DIR.$Default_Theme."/images/$imgfile";
     } 
 	else
 	if (@file_exists(TITANIUM_MODULES_DIR . $mymodule . '/images/lang_' . $currentlang . '/' . $imgfile)) 

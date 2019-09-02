@@ -126,17 +126,22 @@ echo '<td id="bg" class="flames" height"0" valign="top" >';
 echo '<div align="center" id="logo2"><img src="themes/'.$theme_name.'/logo/php-nuke-titanium.png"></div>';
 if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
 echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">The Scorpion Network</a></h1></div>';
+else
 if (strcmp($_SERVER['SERVER_NAME'], 'hub.86it.us') == 0)
 echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">The 86it Developers Network</a></h1></div>';
+else
 if (strcmp($_SERVER['SERVER_NAME'], 'cvs.86it.us') == 0)
 echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">CVS.86IT.US</a></h1></div>';
 else
 echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">The 86it Developers Network</a></h1></div>';
 
+if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
+echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/footer/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>An Organized Social Syndicate</h3></div>';
+else
 echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/footer/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>Great Minds Do Not Think Alike</h3></div>';
 echo '<div align="center" id="foot1">'.$foot2.'</div>';
 //echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/footer/invisible_pixel.gif" width="1" height="1" border="0" alt=""></div>';
-
+ 
 echo '<div align="center">'; 
 echo '<strong>PHP-Nuke Copyright © 2006 by Francisco Burzi.<br />
              PHP-Nuke Titanium © 2017 by The 86it Developers Network.</strong>';
