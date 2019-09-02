@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
 
 /**************************************************************************/
@@ -22,6 +22,7 @@
 
 global $admin_file, $sitename, $nukeurl, $admlang;
 
+define("_DOWNLOAD","Downloads");
 /**
  * Language Defines: Live Feed
  * @since 2.0.9d
@@ -173,7 +174,7 @@ $admlang['headlines']['delete_warn'] = 'WARNING: Are you sure you want to delete
 // define("_SURE2DELHEADLINE","WARNING: Are you sure you want to delete this Headline?");
 
 // define("_AUTHORSADMIN","Author's Administration");
-// define("_AUTHORS_ADMIN_HEADER", "Nuke-Evolution Edit Admins :: Admin Panel");
+// define("_AUTHORS_ADMIN_HEADER", "PHP-Nuke Titanium Edit Admins :: Admin Panel");
 // define("_AUTHORS_RETURNMAIN", "Return to Main Administration");
 // define("_MODIFYINFO","Modify Info");
 // define("_DELAUTHOR","Delete Author");
@@ -227,7 +228,7 @@ $admlang['authors']['superwarn']		= 'WARNING: If Super Admin is checked, the use
 // define("_NOFUNCTIONS","---------");
 // define("_PASSWDNOMATCH","Sorry, the new passwords doesn't match. Go Back and Try Again");
 
-$admlang['referers']['header']			= 'Nuke-Evolution HTTP Referers :: Admin Panel';
+$admlang['referers']['header']			= 'PHP-Nuke Titanium HTTP Referers :: Admin Panel';
 $admlang['referers']['linking']			= 'Who\'s linking our site?';
 $admlang['referers']['delete']			= 'Delete Referers';
 $admlang['referers']['date']			= 'Visited Date';
@@ -236,7 +237,7 @@ $admlang['referers']['none']			= 'There are no %s to display';
 
 
 $admlang['preferences']['link'] 		= 'Preferences';
-$admlang['preferences']['header']		= 'Nuke-Evolution Preferences :: Admin Panel';
+$admlang['preferences']['header']		= 'PHP-Nuke Titanium Preferences :: Admin Panel';
 
 $admlang['preferences']['plugins'] 		= 'Plugins';
 $admlang['plugins']['header'] 			= 'Custom Plugin Administration';
@@ -372,7 +373,7 @@ $admlang['preferences']['meta'] 		= 'Meta Tags';
 $admlang['meta']['title'] 				= 'Meta Tags Administration';
 
 $admlang['messages']['link'] 			= 'Messages';
-$admlang['messages']['header'] 			= 'Nuke-Evolution Messages :: Admin Panel';
+$admlang['messages']['header'] 			= 'PHP-Nuke Titanium Messages :: Admin Panel';
 $admlang['messages']['change_date']		= 'Change start date to today';
 $admlang['messages']['active']			= '(If you Active this Message now, the start date will be today)';
 $admlang['messages']['edit'] 			= 'Edit message';
@@ -382,7 +383,7 @@ $admlang['messages']['view'] 			= 'Visible to';
 $admlang['messages']['remove'] 			= 'Are you sure you want to remove this message?';
 
 
-$admlang['newsletter']['header'] 		= 'Nuke-Evolution Newsletter :: Admin Panel';
+$admlang['newsletter']['header'] 		= 'PHP-Nuke Titanium Newsletter :: Admin Panel';
 $admlang['newsletter']['regards'] 		= 'Best Regards';
 $admlang['newsletter']['subscribed'] 	= 'Subscribed Users';
 $admlang['newsletter']['nousers'] 		= 'The group selected to receive this newsletter has zero users<br />Please go back and select a different group';
@@ -394,7 +395,7 @@ $admlang['newsletter']['sent'] 			= 'The Newsletter has been sent.';
 
 
 $admlang['modules']['link'] 			= 'Modules';
-$admlang['modules']['header'] 			= 'Nuke-Evolution Messages :: Admin Panel';
+$admlang['modules']['header'] 			= 'PHP-Nuke Titanium Messages :: Admin Panel';
 $admlang['modules']['warn'] 			= 'Bold module\'s title represents the module you have in the Homepage.<br />You can\'t Deactivate or Restrict this module while it\'s the default one!<br />If you delete the module\'s directory you\'ll see an error in the Homepage.<br />Also, this module has been replaced with <i>Home</i> link in the modules block.<br /><br />[ <big><strong>&middot;</strong></big> ] means a module which name and link will not be visible in Modules Block';
 $admlang['modules']['block'] 			= 'Modules Block EDIT';
 $admlang['modules']['inhome'] 			= 'In Home';
@@ -544,7 +545,7 @@ $admlang['global']['functions']			= 'Functions';
 $admlang['global']['go']				= 'Go';
 $admlang['global']['goback']			= 'Go Back';
 $admlang['global']['header_return']		= 'Return to Main Administration';
-$admlang['global']['header_top_return'] = 'Nuke-Evolution %s :: Modules Admin Panel';
+$admlang['global']['header_top_return'] = 'PHP-Nuke Titanium %s :: Modules Admin Panel';
 $admlang['global']['home'] 				= 'Home';
 $admlang['global']['hour'] 				= 'Hour';
 $admlang['global']['hours'] 			= 'Hours';
@@ -591,10 +592,10 @@ $admlang['global']['guests_only'] 		= 'Anonymous Users Only';
 $admlang['global']['all_visitors'] 		= 'All Visitors';
 $admlang['global']['groups_only'] 		= 'Groups Only';
 
-$admlang['admin']['administration_header'] 	= 'Administration Menu';
-$admlang['admin']['modules_header'] 	= 'Modules Administration';
+$admlang['admin']['administration_header'] 	= '<strong>Administration Menu</strong>';
+$admlang['admin']['modules_header'] 	= '<strong>Modules Administration</strong>';
 
-$admlang['admin']['important'] 			= 'Important Information';
+$admlang['admin']['important'] 			= '<strong>Important Information</strong>';
 // define('_IMPORTANT_INFO','Important Information');
 $admlang['admin']['ip_lock'] 			= 'Admin IP Lock';
 // define('_IP_LOCK','Admin IP Lock');
@@ -605,7 +606,7 @@ $admlang['admin']['waiting_users'] 		= 'Waiting Users';
 # VERSION CHECKER
 $admlang['admin']['version_check_run'] 	= 'Run Now';
 // define('_RUNNOW','Run Now');
-$admlang['admin']['version_check'] 		= 'Evolution Xtreme Version Checker';
+$admlang['admin']['version_check'] 		= 'PHP-Nuke Titanium Version Checker';
 // define('_VERSION_CHECK','Evolution Xtreme Version Checker');
 $admlang['admin']['no_rights'] 	= 'Sorry %s but you have been given no administration rights. Please contact the site administrator if you feel this is a mistake!';
 // define("_NO_ADMIN_RIGHTS","Sorry %s but you have been given no administration rights. Please contact the site administrator if you feel this is a mistake!");
@@ -629,7 +630,7 @@ $admlang['authors']['superwarn']		= 'WARNING: If Super Admin is checked, the use
  * Mod: Live feed (Live news directly from Evolution Xtreme project site.)
  * @since 2.0.9e
  */
-$admlang['livefeed']['header'] 				= 'Live Feed from Evolution Xtreme';
+$admlang['livefeed']['header'] 				= '<strong>Live Feed from The 86it Developers Hub</strong>';
 
 /**
  * Mod: reCaptcha (Complete replacement for the GD2 captcha system.)

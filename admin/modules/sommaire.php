@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
 
 /************************************************************************/
@@ -404,11 +404,12 @@ echo "<head><style type=\"text/css\">"
         echo "</td>"
             ."</tr><tr><td>";
         
-// maintentant, on va afficher les modules inscrits dans la catégorie actuelle
-        
-// combien y a-t-il de modules dans cette catégorie ?
-        $nbmodules = $nombremodules = count($moduleinthisgroup[$groupmenu[$keysommaire]]);
-        $nombremodules=$nombremodules+5; // on en ajoute 5, qui vont être vides
+		
+		//if (is_array($$moduleinthisgroup[$groupmenu[$keysommaire]]) || $moduleinthisgroup[$groupmenu[$keysommaire]] instanceof Countable) {
+        $nbmodules = $nombremodules = @count($moduleinthisgroup[$groupmenu[$keysommaire]], COUNT_RECURSIVE);
+        $nombremodules=$nombremodules+5;
+		 // $foo is countable 
+        //}
         
         echo "<table align=\"center\"><td></td><td align =\"center\">"._SOMCATCONTENT."</td><td width=\"3\"></td><td align=\"center\">"._SOMLINKURL."</td><td width=\"3\"></td><td align=\"center\">"._SOMLINKTEXT."</td><td width=\"3\"></td><td align=\"center\">"._SOMIMAGE."</td><td align=\"center\">"._SOMBOLD."</td><td></td></tr>";
         echo "<tr><td colspan=10 height=4></td></tr>";
@@ -455,7 +456,7 @@ else {
 }
     // si on sélectionne 'Lien externe' dans la liste des modules, cela va afficher les inputbox.
             echo "<select name=\"sommaireformingroup[$keysommaire][$z]\" onchange='disab(this,this.value,this.form.elements[\"sommaireformmodulelink[$keysommaire][$z]\"],this.form.elements[\"sommaireformmodulelinktext[$keysommaire][$z]\"],\"$linkvalue\",\"$linktextvalue\"); sommaireadminshowhide(\"$sommairezenom\",$hideok)'>";
-            echo "<option value=\"Aucun\">";
+            echo "<option value=\"No\">";
             $selected = ($moduleinthisgroup[$groupmenu[$keysommaire]][$z]=="SOMMAIRE_HR") ? "selected" : "" ;
             echo "<option value=\"SOMMAIRE_HR\" $selected>*"._SOMMAIREHR."*";
             $selected = ($moduleinthisgroup[$groupmenu[$keysommaire]][$z]=="Lien externe") ? "selected" : "" ;
@@ -695,9 +696,27 @@ else {
 /*****[END]********************************************
  [ Base:    Caching System                     v3.0.0 ]
  ******************************************************/
-                $sql="INSERT INTO ".$prefix."_sommaire_categories (groupmenu, module, url, url_text, image, new, new_days, class, bold) VALUES ('$sommaireformgroupmenu[$i]', '".$sommaireformingroup[$i][$j]."', '".$sommaireformmodulelink[$i][$j]."', '".$sommaireformmodulelinktext[$i][$j]."', '".$sommaireformmoduleimage[$i][$j]."', '".$sommaireformmodulenew[$i][$j]."', '".$zenew_days."', '".$zeclass."', '".$sommaireformmodulegras[$i][$j]."')";
-                $db->sql_query($sql);
-                echo (MySql_error());
+                $sql="INSERT IGNORE INTO ".$prefix."_sommaire_categories (groupmenu, 
+				                                                        module, url, 
+																		   url_text, 
+																		      image, 
+																			    new, 
+																		   new_days, 
+																		      class, 
+																			  bold) 
+				VALUES ('$sommaireformgroupmenu[$i]', 
+				        '".$sommaireformingroup[$i][$j]."', 
+						'".$sommaireformmodulelink[$i][$j]."', 
+						'".$sommaireformmodulelinktext[$i][$j]."', 
+						'".$sommaireformmoduleimage[$i][$j]."', 
+						'".$sommaireformmodulenew[$i][$j]."', 
+						'".$zenew_days."', 
+						'".$zeclass."', 
+						'".$sommaireformmodulegras[$i][$j]."')";
+                
+				$db->sql_query($sql);
+                
+				//echo (MySql_error());
             }
             elseif ($sommaireformingroup[$i][$j] =="SOMMAIRE_HR") {
 /*****[BEGIN]******************************************
@@ -711,11 +730,27 @@ else {
 /*****[END]********************************************
  [ Base:    Caching System                     v3.0.0 ]
  ******************************************************/            
-                $sql="INSERT INTO ".$prefix."_sommaire_categories (groupmenu, module, url, url_text, image, new, new_days, class, bold) VALUES ('$sommaireformgroupmenu[$i]', '".$sommaireformingroup[$i][$j]."', '', '' , '', '".$sommaireformmodulenew[$i][$j]."', '".$zenew_days."',  '".$zeclass."', '".$sommaireformmodulegras[$i][$j]."')";
+                $sql="INSERT INTO ".$prefix."_sommaire_categories (groupmenu, 
+				                                                      module, 
+																	     url, 
+																    url_text, 
+																	   image, 
+																	     new, 
+																	new_days, 
+																	   class, 
+																	    bold) 
+				VALUES ('$sommaireformgroupmenu[$i]', '".$sommaireformingroup[$i][$j]."', 
+				                                      '', 
+													  '', 
+													  '', 
+													  '".$sommaireformmodulenew[$i][$j]."', 
+													  '".$zenew_days."',  
+													  '".$zeclass."', 
+													  '".$sommaireformmodulegras[$i][$j]."')";
                 $db->sql_query($sql);
-                echo (MySql_error());
+                //echo (MySql_error());
             }
-            else if ($sommaireformingroup[$i][$j] !="Aucun") { //sinon, (si il y a un module) on insère le nom du module, et pas de lien.
+            else if ($sommaireformingroup[$i][$j] !="No") { //sinon, (si il y a un module) on insère le nom du module, et pas de lien.
 /*****[BEGIN]******************************************
  [ Base:    Caching System                     v3.0.0 ]
  ******************************************************/
@@ -727,11 +762,27 @@ else {
 /*****[END]********************************************
  [ Base:    Caching System                     v3.0.0 ]
  ******************************************************/
-                $sql="INSERT INTO ".$prefix."_sommaire_categories (groupmenu, module, url, url_text, image, new, new_days, class, bold) VALUES ('$sommaireformgroupmenu[$i]', '".$sommaireformingroup[$i][$j]."', '', '' , '".$sommaireformmoduleimage[$i][$j]."', '".$sommaireformmodulenew[$i][$j]."', '".$zenew_days."',  '".$zeclass."', '".$sommaireformmodulegras[$i][$j]."')";
+                $sql="INSERT INTO ".$prefix."_sommaire_categories (groupmenu, 
+				                                                      module, 
+																	     url, 
+																    url_text, 
+																	   image, 
+																	     new, 
+																	new_days, 
+																	   class, 
+																	    bold) 
+			    VALUES ('$sommaireformgroupmenu[$i]', '".$sommaireformingroup[$i][$j]."', 
+				                                      '', 
+													  '' , 
+													  '".$sommaireformmoduleimage[$i][$j]."', 
+													  '".$sommaireformmodulenew[$i][$j]."', 
+													  '".$zenew_days."',  
+													  '".$zeclass."', 
+													  '".$sommaireformmodulegras[$i][$j]."')";
                 $db->sql_query($sql);
                 // echo (MySql_error());
             }
-        // --> si 'Aucun' est sélectionné dans les modules, on n'insère aucune donnée !
+        // --> si 'No' est sélectionné dans les modules, on n'insère aucune donnée !
         }
         
 // si la catégorie ne contient aucune donnée (complètement vide), alors on ne l'insère pas dans la DB.
@@ -864,35 +915,35 @@ global $admin_file;
     <script language="Javascript">
     opener.document.forms.form_sommaire.elements["sommaireformmoduleclass[<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $keysommaire;?>][<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $z;?>]"].value="<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $somlienclass;?>";
     opener.document.forms.form_sommaire.elements["sommaireformmodulenew_days[<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $keysommaire;?>][<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $z;?>]"].value="<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $somnew_days;?>";
     opener.document.forms.form_sommaire.elements["sommaireformeachcategoryclass[<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $keysommaire;?>]"].value="<?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/ echo $somcategoryclass;?>";
     </script>
     <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
         echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">
         <html lang=\""._LANGCODE."\">
