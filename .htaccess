@@ -26,6 +26,18 @@ DirectoryIndex index.php index.html
 Options +FollowSymlinks
 <IfModule mod_rewrite.c> 
 RewriteEngine on
+
+##################################################################################################
+# Force SSL - no insecure data connections!                                                      ##### Added By Ernest Allen Buffington 08/05/2019
+##################################################################################################
+RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule (.*) https://%{HTTP_HOST}:443%{REQUEST_URI}
+
+##################################################################################################
+
 # -------------------------------------------
 # Security Rewrites
 # -------------------------------------------
