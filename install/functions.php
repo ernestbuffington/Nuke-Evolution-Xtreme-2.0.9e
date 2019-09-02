@@ -383,7 +383,7 @@ function validate_admin(){
  [ Mod:    Auto Admin Login                    v2.0.0 ]
  ******************************************************/
 		$cookiedata_admin = base64_encode("$user_nick:$user_pass:english:1:new");
-		setcookie('admin',$cookiedata_admin,time()+2592000,$cookie_location);
+		@setcookie('admin',$cookiedata_admin,time()+2592000,$cookie_location); //quiet header warning in PHP 7.3.6 during install - Ernest Buffington 09/02/2019
 /******************************************************
  [ Mod:    Auto Admin Login                    v2.0.0 ]
  ******************************************************/
@@ -391,7 +391,7 @@ function validate_admin(){
  [ Mod:    Auto First User Login               v1.0.0 ]
  ******************************************************/
         $cookiedata = base64_encode("2:$user_nick:$user_pass");
-        setcookie('user',$cookiedata,time()+2592000,$cookie_location);
+        @setcookie('user',$cookiedata,time()+2592000,$cookie_location); //quiet header warning in PHP 7.3.6 during install - Ernest Buffington 09/02/2019
 /*****[END]********************************************
  [ Mod:    Auto First User Login               v1.0.0 ]
  ******************************************************/
