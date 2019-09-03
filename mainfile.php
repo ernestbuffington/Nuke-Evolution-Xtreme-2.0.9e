@@ -385,6 +385,8 @@ require_once(NUKE_INCLUDE_DIR.'function_img.php');
 
 require_once(NUKE_INCLUDE_DIR.'functions_evo.php');
 require_once(NUKE_INCLUDE_DIR.'functions_evo_custom.php');
+require_once(NUKE_INCLUDE_DIR.'functions_titanium.php');
+require_once(NUKE_INCLUDE_DIR.'functions_titanium_custom.php');
 include_once(NUKE_INCLUDE_DIR.'validation.php');
 
 // We globalize the $cookie and $userinfo variables,

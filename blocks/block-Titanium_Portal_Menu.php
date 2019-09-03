@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System 
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
 
 /************************************************************************/
@@ -618,6 +618,12 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 	{
       $content .= "<div class=\"supersmall\" align=\"center\"><font size=\"1\" color=\"$textcolor1\"><strong>86it Main Hub</strong></font></div>\n";
       $content .= "<div class=\"supersmall\" align=\"center\"><font size=\"1\" color=\"$textcolor2\"><strong>https://".$_SERVER['SERVER_NAME']."</strong></font></div>\n";
+	}
+    else
+	if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)  
+	{
+      $content .= "<div class=\"supersmall\" align=\"center\"><font size=\"1\" color=\"$textcolor1\"><strong>Welcome to...</strong></font></div>\n";
+      $content .= "<div class=\"supersmall\" align=\"center\"><font size=\"2\" color=\"$textcolor2\"><strong><a href=\"index.php\">The Scorpion Network</a></strong></font></div>\n";
 	}
 	else
 	{
