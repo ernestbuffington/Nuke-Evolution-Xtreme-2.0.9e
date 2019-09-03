@@ -1,7 +1,6 @@
 <?php
-
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ Nuke-Evolution Xtreme: Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
 
 /************************************************************************/
@@ -25,18 +24,26 @@ if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
 | management system based on PHP-Nuke                     |
 ---------------------------------------------------------*/
 
+/*----[ $portaladmin ] ----------------------------------------
+| Your admin id #                                         |
+|                                                         |
+| Default: 2                                              |
+---------------------------------------------------------*/
+$portaladmin = 2;
+
 /*----[ $dbhost ] ----------------------------------------
 | Your database host, normally 'localhost'                |
 |                                                         |
 | Default: localhost                                      |
 ---------------------------------------------------------*/
 $dbhost = 'localhost';
+
 /*----[ $dbname ] ----------------------------------------
 | The name of your database that will hold Evo's tables   |
 |                                                         |
 | Default: xxx_evo                                        |
 ---------------------------------------------------------*/
-$dbname = 'xxx_evo';
+$dbname = 'xxx_network';
 
 /*----[ $dbuname ] ---------------------------------------
 | The username linked to your database, must have correct |
@@ -44,7 +51,7 @@ $dbname = 'xxx_evo';
 |                                                         |
 | Default: xxx_evo                                        |
 ---------------------------------------------------------*/
-$dbuname = 'xxx_evo';
+$dbuname = 'xxx_admin';
 
 /*----[ $dbpass ] ----------------------------------------
 | The password associated with your db usersname          |
@@ -110,7 +117,6 @@ $directory_mode = 0777;
 ----------------------------------------------------------------------*/
 $file_mode = 0666;
 
-
 /*----[ $debug ] -----------------------------------------
 | Debugging Status of your website                        |
 |                                                         |
@@ -133,23 +139,12 @@ $debug = true;
 |       - Faster load, more server usage                  |
 |         We recommend you use SQL cache if you have      |
 |         problems with the File Cache                    |
-|   3: XCache                                             |
-|       - Must be installed                               |
-|       - See http://xcache.lighttpd.net/                 |
-|		- Loads data into opcode and memory               |
-|   4: APC                                                |
-|       - Must be installed (easy to do and fast)         |
-|       - See http://pecl.php.net/package/APC             |
-|		- Loads data into opcode and memory               |
-|   5: Memcached                                          |
-|       - Must be installed                               |
-|       - See http://memcached.org/                       |
-|		- Loads data into opcode and memory               |
+|   2: SQL Cache                                          |
+|       - One more query per page, less server usage      |
 |                                                         |
 | Default: 1 (File Cache)                                 |
 ---------------------------------------------------------*/
 $use_cache = 1;
-define('CACHE_PREFIX', '');
 
 /*----[ $persistency ] -----------------------------------
 | Allow persistent database connections                   |
@@ -170,5 +165,4 @@ $persistency = false;
 /* Congratulations! Now you have the webs best portal installed!     */
 /* Thanks for choosing Nuke- Evolution: The Future of the Web!       */
 /*********************************************************************/
-
 ?>

@@ -17,7 +17,7 @@
    Notes         : Simple block to allow people to see who was last seen 
                  : on the website.
 ************************************************************************/
-defined('NUKE_TITANIUM') or die('Just go away, Shit Head!');
+defined('NUKE_EVO') or die('Just go away, Shit Head!');
 
 global $db, $prefix, $userinfo;
 global $evouserinfo_avatar, $board_config, $userinfo; 
