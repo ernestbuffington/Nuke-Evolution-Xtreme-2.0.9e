@@ -62,23 +62,23 @@ switch($op) {
             $row = $db->sql_fetchrow($result);
             $topicimage = stripslashes($row['topicimage']);
             $topictext = stripslashes(check_html($row['topictext'], "nohtml"));
-            if (file_exists("themes/$ThemeSel/images/topics/$topicimage")) {
-                $topicimage = "themes/$ThemeSel/images/topics/$topicimage";
+            if (file_exists("themes/$ThemeSel/images/Blog_Topics/$topicimage")) {
+                $topicimage = "themes/$ThemeSel/images/Blog_Topics/$topicimage";
             } else {
                 $topicimage = $tipath.$topicimage;
             }
         } else {
             $topictext = _ALLTOPICS;
-            if (file_exists("themes/$ThemeSel/images/topics/AllTopics.gif")) {
-                $topicimage = "themes/$ThemeSel/images/topics/AllTopics.gif";
+            if (file_exists("themes/$ThemeSel/images/Blog_Topics/AllTopics.png")) {
+                $topicimage = "themes/$ThemeSel/images/Blog_Topics/AllTopics.png";
             } else {
-                $topicimage = $tipath.'AllTopics.gif';
+                $topicimage = $tipath.'AllTopics.png';
             }
         }
-        if (file_exists("themes/$ThemeSel/images/topics/AllTopics.gif")) {
-            $alltop = "themes/$ThemeSel/images/topics/AllTopics.gif";
+        if (file_exists("themes/$ThemeSel/images/Blog_Topics/AllTopics.png")) {
+            $alltop = "themes/$ThemeSel/images/Blog_Topics/AllTopics.png";
         } else {
-            $alltop = $tipath.'AllTopics.gif';
+            $alltop = $tipath.'AllTopics.png';
         }
         OpenTable();
         if ($type == 'users') {
