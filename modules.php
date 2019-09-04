@@ -54,65 +54,161 @@ if ($name) {
 /*****[END]********************************************
  [ Mod:    Lock Modules                        v1.0.0 ]
  ******************************************************/
-    $module = $db->sql_ufetchrow('SELECT `title`, `active`, `view`, `blocks`, `custom_title`, `groups` FROM `'.$prefix.'_modules` WHERE `title`="'.Fix_Quotes($name).'"');
+    $module = $db->sql_ufetchrow('SELECT `title`, 
+	                                    `active`, 
+										  `view`, 
+										`blocks`, 
+								  `custom_title`, 
+								        `groups` FROM `'.$prefix.'_modules` WHERE `title`="'.Fix_Quotes($name).'"');
 	$module_name = $module['title'];
-	if ($module_name == 'Your_Account' || $module_name == main_module()) {
+	
+	if ($module_name == 'Your_Account' || $module_name == main_module()) 
+	{
 		$module['active'] = true;
 		$view = 0;
-	} else {
+	} 
+	else 
+	{
 		$view = $module['view'];
 	}
-	if ($name == 'Technocrat') {
+	
+	if ($name == 'Technocrat') 
+	{
 	    die('Sleep alittle, Drink alot');
 	}
-	if ($module['active'] || is_mod_admin($module_name)) {
-        if (!isset($file) OR $file != $_REQUEST['file']) $file='index';
-        if (isset($open)) {
+	
+	if ($name == 'TheGhost') 
+	{
+	    die('Sleep alittle, Code alot');
+	}
+	
+	if ($module['active'] || is_mod_admin($module_name)) 
+	{
+        if (!isset($file) OR $file != $_REQUEST['file']) 
+		$file='index';
+        
+		if (isset($open)) 
+		{
             if ($open != $_REQUEST['open']) $open = '';
         }
-        if ((isset($file) && stristr($file,"..")) || (isset($mop) && stristr($mop,"..")) || (isset($open) && stristr($open,".."))) die('You are so cool...');
+        
+		if ((isset($file) && stristr($file,"..")) || (isset($mop) && stristr($mop,"..")) || (isset($open) && stristr($open,".."))) 
+		die('You are so cool...');
+		
 		$showblocks = $module['blocks'];
+		
 		$module_title = ($module['custom_title'] != '') ? $module['custom_title'] : str_replace('_', ' ', $module_name);
-        $modpath = isset($module['title']) ? NUKE_MODULES_DIR.$module['title']."/$file.php" : NUKE_MODULES_DIR.$name."/$file.php";
-        $groups = (!empty($module['groups'])) ? $groups = explode('-', $module['groups']) : '';
-        if(!empty($open)) {
+        
+		$modpath = isset($module['title']) ? NUKE_MODULES_DIR.$module['title']."/$file.php" : NUKE_MODULES_DIR.$name."/$file.php";
+        
+		$groups = (!empty($module['groups'])) ? $groups = explode('-', $module['groups']) : '';
+        
+		if(!empty($open)) 
+		{
             $modpath = isset($module['title']) ? NUKE_MODULES_DIR.$module['title']."/$open.php" : NUKE_MODULES_DIR.$name."/$open.php";
         }
 		unset($module, $error);
-		if ($view >= 1 && !is_admin()) {
-		    //Must Not be a user
-			if ($view == 2 AND is_user()) {
+		
+		if ($view >= 1 && !is_admin()) 
+		{
+		    # Must Not be a user
+			if ($view == 2 AND is_user()) 
+			{
 				$error = _MVIEWANON;
-		    //Must Be a user
-			} else if ($view == 3 && !is_user()) {
+		    # Must Be a user
+			} 
+			else 
+			if ($view == 3 && !is_user()) 
+			{
 				$error = _MODULEUSERS;
-		   //Must Be a admin
-			} elseif ($view == 4 && !is_mod_admin($module['title'])) {
+		    # Must Be an admin
+			} 
+			else
+			if ($view == 4 && !is_mod_admin($module['title'])) 
+			{
 				$error = _MODULESADMINS;
-		    //Groups
-			} elseif ($view == 6 && !empty($groups) && is_array($groups)) {
+		    # Groups
+			} 
+			else
+			if ($view == 6 && !empty($groups) && is_array($groups)) 
+			{
 			    $ingroup = false;
+			
 			    global $userinfo;
-			    foreach ($groups as $group) {
-    			     if (isset($userinfo['groups'][$group])) {
+			
+			    foreach ($groups as $group) 
+				{
+    			     if (isset($userinfo['groups'][$group])) 
+					 {
     			         $ingroup = true;
     			     }
 			    }
-			    if (!$ingroup) $error = _MODULESGROUP;
+			  
+			    # Lets do alittle more with the information we give when folks try to access
+				# groups they are not authorized to view or access!
+				# Ernest Buffington - 09/03/2019  
+				if (!$ingroup) 
+				{
+				  $result = $db->sql_query('SELECT group_name
+            
+			      FROM '.$prefix.'_bbgroups WHERE group_id = '.$group.'
+				  ORDER BY group_id'); 
+				 
+				  if($db->sql_numrows($result)) 
+	              {
+                     while($row = $db->sql_fetchrow($result)) 
+                     {
+						 if ($group == 9)
+						 {
+						   $error  = '<img class="icons" align="absmiddle" width="200" src="'.img('unknown-error.png','error').'"><br />';
+                           $error .= '<strong><font size="4">'.GroupColor($row['group_name']).' Area!';
+                           $error .= '<br />You do not possess the required credentials to access the Network '.$module_title.' area!</font></strong>';
+						 }
+						 else
+						 if ($group == 10)
+						 {
+						   $error  = '<img class="icons" align="absmiddle" width="200" src="'.img('unknown-error.png','error').'"><br />';
+                           $error .= '<strong><font size="4">You must be a '.GroupColor($row['group_name']).' Area!';
+                           $error .= '<br />You do not possess the required credentials to access the '.$module_title.' area!</font></strong>';
+					     }
+						 else
+						 {
+						   $error  = '<img class="icons" align="absmiddle" width="200" src="'.img('unknown-error.png','error').'"><br />'; 
+                           $error .= '<strong><font size="4">'.GroupColor($row['group_name']).' Area!';
+                           $error .= '<br />You do not possess the required credentials to access the '.$module_title.' area!</font></strong>';
+					     }
+
+					 }
+        
+                  }
+                 
+				 $db->sql_freeresult($result);
+			     
+			   }
 			}
 		}
-        if(isset($error)) {
+        
+		if(isset($error)) 
+		{
             DisplayError($error);
-        } elseif(file_exists($modpath)) {
+        } 
+		else
+		if(file_exists($modpath)) 
+		{
             include($modpath);
-        } else {
+        } 
+		else 
+		{
             DisplayError(_MODULEDOESNOTEXIST);
         }
-    } else {
+    } 
+	else 
+	{
         DisplayError(_MODULENOTACTIVE."<br /><br />"._GOBACK);
     }
-} else {
+} 
+else 
+{
     redirect('index.php');
 }
-
 ?>

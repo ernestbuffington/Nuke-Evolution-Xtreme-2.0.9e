@@ -27,9 +27,12 @@
 	  NSN Center Blocks                        v2.2.1       05/26/2009
  ************************************************************************/
 
-if(!defined('HEADER')) {
+if(!defined('HEADER')) 
+{
     define('HEADER', true);
-} else {
+} 
+else 
+{
     return;
 }
 
@@ -53,27 +56,32 @@ function head()
     the_pagetitle();
 
     include_once(NUKE_INCLUDE_DIR.'meta.php');
-    include_once(NUKE_INCLUDE_DIR.'javascript.php');
+    # START Cookie SandBox added by Ernest Allen Buffington - 09/03/2019
+	include_once(NUKE_INCLUDE_DIR.'cookies.php');
+	# END Cookie SandBox added by Ernest Allen Buffington - 09/03/2019
+	
+	include_once(NUKE_INCLUDE_DIR.'javascript.php');
     include_once(NUKE_THEMES_DIR.$ThemeSel.'/theme.php');
 
-    if ((($favicon = $cache->load('favicon', 'config')) === false) || empty($favicon)) {
-        if (file_exists(NUKE_BASE_DIR.'favicon.ico')) {
-            $favicon = "favicon.ico";
-        } else if (file_exists(NUKE_IMAGES_DIR.'favicon.ico')) {
-            $favicon = "images/favicon.ico";
-        } else if (file_exists(NUKE_THEMES_DIR.$ThemeSel.'/images/favicon.ico')) {
-            $favicon = "themes/$ThemeSel/images/favicon.ico";
-        } else {
+    if ((($favicon = $cache->load('favicon', 'config')) === false) || empty($favicon)) 
+	{
+        if (file_exists(NUKE_BASE_DIR.'favicon.ico')) $favicon = "favicon.ico";
+		else 
+		if (file_exists(NUKE_IMAGES_DIR.'favicon.ico')) $favicon = "images/favicon.ico";
+		else 
+		if (file_exists(NUKE_THEMES_DIR.$ThemeSel.'/images/favicon.ico')) $favicon = "themes/$ThemeSel/images/favicon.ico";
+		else 
             $favicon = 'none';
-        }
-        if ($favicon != 'none') {
+        
+		if ($favicon != 'none') 
             echo "<link rel=\"shortcut icon\" href=\"$favicon\" type=\"image/x-icon\" />\n";
-        }
+
         $cache->save('favicon', 'config', $favicon);
-    } else {
-        if ($favicon != 'none') {
-            echo "<link rel=\"shortcut icon\" href=\"$favicon\" type=\"image/x-icon\" />\n";
-        }
+    } 
+	else 
+	{
+        if ($favicon != 'none') 
+        echo "<link rel=\"shortcut icon\" href=\"$favicon\" type=\"image/x-icon\" />\n";
     }
 
     // If you use ForumNews Advance, you may want to replace the RSS News with the RSS ForumNews. Just remove the comments below and comment out the RSS News.

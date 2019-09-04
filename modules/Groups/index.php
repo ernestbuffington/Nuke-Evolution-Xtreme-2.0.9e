@@ -193,18 +193,27 @@ if (isset($_POST['groupstatus']) && $group_id) {
     
     $message = $lang['Group_type_updated'] . '<br /><br />' . sprintf($lang['Click_return_group'], '<a href="' . append_sid("groupcp.$phpEx?" . POST_GROUPS_URL . "=$group_id") . '">', '</a>') . '<br /><br />' . sprintf($lang['Click_return_index'], '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
     message_die(GENERAL_MESSAGE, $message);
-} elseif (isset($_POST['joingroup']) && $group_id) {
-    //
-    // First, joining a group
-    // If the user isn't logged in redirect them to login
-    //
-    if (!is_user() || !$userdata['session_logged_in']) {
-        redirect(append_sid("login.$phpEx?redirect=groupcp.$phpEx&" . POST_GROUPS_URL . "=$group_id", true));
-    } else if ($sid !== $userdata['session_id']) {
-        message_die(GENERAL_ERROR, $lang['Session_invalid']);
-    }
+} 
+else
+if (isset($_POST['joingroup']) && $group_id) 
+{
+    # First, joining a group
+    # If the user isn't logged in redirect them to login
+    global $userinfo;
+    # Check if a Registered User is Logged-In
+    $username = is_user() ? $userinfo['username'] : _ANONYMOUS;
+    # Ask Anonymous User to register or please login.
+   if ($username === _ANONYMOUS):
+   echo '<div align="center">You are not Logged-In as a User!</div><br />';
+   echo '<div align="center">Please <a href="modules.php?name=Your_Account">Login</a> or <a href="modules.php?name=Your_Account&amp;op=new_user">Register</a>&nbsp;&nbsp;</div>';
+   message_die(GENERAL_ERROR, $lang['Session_invalid']);
+   else:
+
+
+   endif;
     
     $sql = "SELECT ug.user_id, g.group_type, group_count, group_count_max FROM (" . USER_GROUP_TABLE . " ug, " . GROUPS_TABLE . " g) WHERE g.group_id = '$group_id' AND ( g.group_type <> " . GROUP_HIDDEN . " OR (g.group_count <= '" . $userdata['user_posts'] . "' AND g.group_count_max > '" . $userdata['user_posts'] . "')) AND ug.group_id = g.group_id";
+
     if (!($result = $db->sql_query($sql))) {
         message_die(GENERAL_ERROR, 'Could not obtain user and group information', '', __LINE__, __FILE__, $sql);
     }
@@ -282,20 +291,32 @@ if (isset($_POST['groupstatus']) && $group_id) {
     
     $message = ($is_autogroup_enable) ? $lang['Group_added'] : $lang['Group_joined'] . '<br /><br />' . sprintf($lang['Click_return_group'], '<a href="' . append_sid("groupcp.$phpEx?" . POST_GROUPS_URL . "=$group_id") . '">', '</a>') . '<br /><br />' . sprintf($lang['Click_return_index'], '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
     message_die(GENERAL_MESSAGE, $message);
-} elseif (isset($_POST['unsub']) || isset($_POST['unsubpending']) && $group_id) {
-    //
-    // Second, unsubscribing from a group
-    // Check for confirmation of unsub.
-    //
-    if ($cancel) {
+} 
+else
+if (isset($_POST['unsub']) || isset($_POST['unsubpending']) && $group_id) 
+{
+    # Second, unsubscribing from a group
+    # Check for confirmation of unsub.
+    if ($cancel) 
+	{
         redirect(append_sid("groupcp.$phpEx", true));
-    } elseif (!is_user() || !$userdata['session_logged_in']) {
-        redirect('modules.php?name=Your_Account&amp;redirect=groupcp.php&amp;' . POST_GROUPS_URL . '=' . $group_id);
-    } else if ($sid !== $userdata['session_id']) {
-        message_die(GENERAL_ERROR, $lang['Session_invalid']);
-    }
+    } 
+	
+    # If the user isn't logged in redirect them to login
+    global $userinfo;
+    # Check if a Registered User is Logged-In
+    $username = is_user() ? $userinfo['username'] : _ANONYMOUS;
+    # Ask Anonymous User to register or please login.
+    if ($username === _ANONYMOUS):
+    echo '<div align="center">You are not Logged-In as a User!</div><br />';
+    echo '<div align="center">Please <a href="modules.php?name=Your_Account">Login</a> or <a href="modules.php?name=Your_Account&amp;op=new_user">Register</a>&nbsp;&nbsp;</div>';
+    message_die(GENERAL_ERROR, $lang['Session_invalid']);
+    else:
+
+    endif;	
     
-    if ($confirm) {
+    if ($confirm) 
+	{
         /*****[BEGIN]******************************************
         [ Mod:     Group Colors and Ranks             v1.0.0 ]
         ******************************************************/
@@ -393,21 +414,25 @@ if (isset($_POST['groupstatus']) && $group_id) {
             $is_moderator = TRUE;
         }
         
-        //
-        // Handle Additions, removals, approvals and denials
-        //
+        # Handle Additions, removals, approvals and denials
         if (!empty($_POST['add']) || !empty($_POST['remove']) || isset($_POST['approve']) || isset($_POST['deny'])) 
         {
-            if (!is_user()) 
-            {
-                redirect(append_sid("login.$phpEx?redirect=groupcp.$phpEx&" . POST_GROUPS_URL . "=$group_id", true));
-            } 
-            elseif ($sid !== $userdata['session_id']) 
-            {
-                message_die(GENERAL_ERROR, $lang['Session_invalid']);
-            }
             
-            if (!$is_moderator) {
+            # If the user isn't logged in redirect them to login
+            global $userinfo;
+            # Check if a Registered User is Logged-In
+            $username = is_user() ? $userinfo['username'] : _ANONYMOUS;
+            # Ask Anonymous User to register or please login.
+            if ($username === _ANONYMOUS):
+            echo '<div align="center">You are not Logged-In as a User!</div><br />';
+            echo '<div align="center">Please <a href="modules.php?name=Your_Account">Login</a> or <a href="modules.php?name=Your_Account&amp;op=new_user">Register</a>&nbsp;&nbsp;</div>';
+            message_die(GENERAL_ERROR, $lang['Session_invalid']);
+            else:
+
+            endif;	
+            
+            if (!$is_moderator) 
+			{
                 $template->assign_vars(array(
                     'META' => '<meta http-equiv="refresh" content="3;url=' . append_sid("index.$phpEx") . '">'
                 ));

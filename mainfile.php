@@ -385,14 +385,18 @@ require_once(NUKE_INCLUDE_DIR.'function_img.php');
 
 require_once(NUKE_INCLUDE_DIR.'functions_evo.php');
 require_once(NUKE_INCLUDE_DIR.'functions_evo_custom.php');
+
+# START added for Titanium addons by Ernest Allen Buffington 09/03/2019 
 require_once(NUKE_INCLUDE_DIR.'functions_titanium.php');
 require_once(NUKE_INCLUDE_DIR.'functions_titanium_custom.php');
+# END added for Titanium addons by Ernest Allen Buffington 09/03/2019 
+
 include_once(NUKE_INCLUDE_DIR.'validation.php');
 
-// We globalize the $cookie and $userinfo variables,
-// so that they dont have to be called each time
-// And as you can see, getusrinfo() is now deprecated.
-// Because you dont have to call it anymore, just call $userinfo
+# We globalize the $cookie and $userinfo variables,
+# so that they dont have to be called each time
+# And as you can see, getusrinfo() is now deprecated.
+# Because you dont have to call it anymore, just call $userinfo
 if(is_user()) {
     $cookie = cookiedecode();
     $userinfo = get_user_field('*', $cookie[1], true);
@@ -401,7 +405,7 @@ if(is_user()) {
     $userinfo = get_user_field('*', 'Anonymous', true);
 }
 
-//If they have been deactivated send them to logout to kill their cookie and sessions
+# If they have been deactivated send them to logout to kill their cookie and sessions
 if (is_array($userinfo) && isset($userinfo['user_active']) && $userinfo['user_id'] != 1 && $userinfo['user_id'] != 0 && $userinfo['user_active'] == 0 && $_GET['name'] != 'Your_Account') {
     redirect('modules.php?name=Your_Account&op=logout');
     die();
@@ -424,7 +428,18 @@ $sitekey = md5($_SERVER['HTTP_HOST']);
 $gfx_chk = 0;
 $tipath = 'modules/Blog/images/Blog_Topics/';
 $reasons = array('As Is', 'Offtopic', 'Flamebait', 'Troll', 'Redundant', 'Insighful', 'Interesting', 'Informative', 'Funny', 'Overrated', 'Underrated');
-$AllowableHTML = array('b'=>1, 'i'=>1, 'a'=>2, 'em'=>1, 'br'=>1, 'strong'=>1, 'blockquote'=>1, 'tt'=>1, 'li'=>1, 'ol'=>1, 'ul'=>1, 'pre'=>1);
+$AllowableHTML = array('b'=>1, 
+                       'i'=>1, 
+					   'a'=>2, 
+					   'em'=>1, 
+					   'br'=>1, 
+				   'strong'=>1, 
+			   'blockquote'=>1, 
+			           'tt'=>1, 
+					   'li'=>1, 
+					   'ol'=>1, 
+					   'ul'=>1, 
+					  'pre'=>1);
 
 $nukeconfig = load_nukeconfig();
 foreach($nukeconfig as $var => $value) {
@@ -882,7 +897,8 @@ function ultramode() {
     $querylang = ($multilingual == 1) ? "AND (s.alanguage='".$currentlang."' OR s.alanguage='')" : "";
     $sql = "SELECT s.sid, s.catid, s.aid, s.title, s.time, s.hometext, s.comments, s.topic, s.ticon, t.topictext, t.topicimage FROM `".$prefix."_stories` s LEFT JOIN `".$prefix."_topics` t ON t.topicid = s.topic WHERE s.ihome = '0' ".$querylang." ORDER BY s.time DESC LIMIT 0,10";
     $result = $db->sql_query($sql);
-    while ($row = $db->sql_fetchrow($result, SQL_ASSOC)) {
+    while ($row = $db->sql_fetchrow($result, SQL_ASSOC)) 
+	{
         $rsid = $row['sid'];
         $raid = $row['aid'];
         $rtitle = htmlspecialchars(stripslashes($row['title']));
@@ -891,14 +907,18 @@ function ultramode() {
         $topictext = $row['topictext'];
         $topicimage = ($row['ticon']) ? stripslashes($row['topicimage']) : '';
         $rtime = formatTimestamp($rtime, 'l, F d');
-        $content .= "%%\n".$rtitle."\n/modules.php?name=News&file=article&sid=".$rsid."\n".$rtime."\n".$raid."\n".$topictext."\n".$rcomments."\n".$topicimage."\n";
+        $content .= "%%\n".$rtitle."\n/modules.php?name=Blog&file=article&sid=".$rsid."\n".$rtime."\n".$raid."\n".$topictext."\n".$rcomments."\n".$topicimage."\n";
     }
     $db->sql_freeresult($result);
-    if (file_exists(NUKE_BASE_DIR."ultramode.txt") && is_writable(NUKE_BASE_DIR."ultramode.txt")) {
+    
+	if (file_exists(NUKE_BASE_DIR."ultramode.txt") && is_writable(NUKE_BASE_DIR."ultramode.txt")) 
+	{
         $file = fopen(NUKE_BASE_DIR."ultramode.txt", "w");
         fwrite($file, "General purpose self-explanatory file with news headlines\n".$content);
         fclose($file);
-    } else {
+    } 
+	else 
+	{
         global $debugger;
         $debugger->handle_error('Unable to write ultramode content to file', 'Error');
     }
@@ -1300,12 +1320,12 @@ function get_theme() {
     if (isset($ThemeSel)) return $ThemeSel;
     global $Default_Theme, $cookie;
 
-    #Quick Theme Change - Theme Management (JeFFb68CAM)
+    # Quick Theme Change - Theme Management (JeFFb68CAM)
     if(isset($_REQUEST['chngtheme']) && is_user()) {
         ChangeTheme($_REQUEST['theme'], $cookie[0]);
     }
 
-    #Theme Preview Mod - Theme Management (JeFFb68CAM)
+    # Theme Preview Mod - Theme Management (JeFFb68CAM)
     if(isset($_REQUEST['tpreview']) && ThemeAllowed($_REQUEST['tpreview'])) {
         $ThemeSel = $_REQUEST['tpreview'];
         if(!is_user()) {
@@ -1314,12 +1334,12 @@ function get_theme() {
         return $ThemeSel;
     }
 
-    #Theme Preview for guests Mod - Theme Management (JeFFb68CAM)
+    # Theme Preview for guests Mod - Theme Management (JeFFb68CAM)
     if (isset($_COOKIE['guest_theme']) && !is_user()) {
         return (ThemeAllowed($_COOKIE['guest_theme']) ? $_COOKIE['guest_theme'] : $Default_Theme);
     }
 
-    #New feature to grab a backup theme if the one we are trying to use does not exist, no more missing theme errors :)
+    # New feature to grab a backup theme if the one we are trying to use does not exist, no more missing theme errors :)
     $ThemeSel = (ThemeAllowed($nTheme = (isset($cookie[9]) ? $cookie[9] : $Default_Theme))) ? $nTheme : ThemeBackup($nTheme);
 
     return $ThemeSel;
@@ -1477,3 +1497,4 @@ include_once(NUKE_CLASSES_DIR.'class.zip.php');
 /*****[END]********************************************
  [ Include:  Zip Class                                ]
  ******************************************************/
+?>
