@@ -1400,7 +1400,7 @@ if ($old_school_imagedropdown==0)
 
 	echo""
 	."<br><br>"._MENU_REMARKS.""._MENU_REMARKSTWO.""
-	."<br><div align=\"center\"><br><br>version 5.01 - &copy; <a href=\"mailto:ernest.buffington@gmail.com?body=Read the FAQ before asking me questions!!\">Ernest Allen Buffington</a></div>";
+	."<br><div align=\"center\"><br><br>Portal Menu v5.01 - &copy; 2019 The 86it Developers Network</div>";
 
 	CloseTable();
 	include("footer.php");
