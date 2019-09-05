@@ -136,11 +136,11 @@ else
 {
     include_once(NUKE_BASE_DIR.'header.php');
     
-	OpenTable();
+	//OpenTable();
     
-	echo "<div align=\"center\"><span class=\"option\"><strong>"._CURRENTSURVEY."</strong></span></div>";
+	//echo "<div align=\"center\"><span class=\"option\"><strong>"._CURRENTSURVEY."</strong></span></div>";
     
-	CloseTable();
+	//CloseTable();
     
 	echo "<table border=\"0\" align=\"center\"><tr><td>";
     
@@ -166,8 +166,7 @@ function pollMain($pollID)
     
 	global $content;
 
-	themecenterbox(_SURVEY, $content, "poll1");
-	//themesidebox(_SURVEY, $content, "poll1");
+	themesidebox(_SURVEY, $content, $pollID);
 }
 
 function pollLatest() {
