@@ -64,10 +64,13 @@ if ($db->sql_numrows($result) < 1) {
     $past = time()-86400*$number_of_days;
     $result = $db->sql_query("SELECT ip FROM ".$prefix."_poll_check WHERE ip='$ip' AND pollID='$pollID'");
     $result2 = $db->sql_query("SELECT optionText, voteID, optionCount FROM ".$prefix."_poll_data WHERE pollID='$pollID' AND optionText!='' ORDER BY voteID");
-    if ($db->sql_numrows($result) > 0) {
-        while ($row = $db->sql_fetchrow($result2)) {
+    if ($db->sql_numrows($result) > 0) 
+	{
+        while ($row = $db->sql_fetchrow($result2)) 
+		{
             $options[] = $row;
-            $sum += (int)$row['optionCount'];
+            if (is_numeric($sum)) # Fix Ernest Buffington ADD
+		    $sum += (int)$row['optionCount'];
         }
         $ThemeSel = get_theme();
         $leftbar = file_exists("themes/$ThemeSel/images/survey_leftbar.gif") ? 'survey_leftbar.gif' : 'leftbar.gif';
@@ -100,7 +103,8 @@ if ($db->sql_numrows($result) < 1) {
     else {
         while ($row = $db->sql_fetchrow($result2)) {
             $content .= "<tr><td valign=\"top\"><input type=\"radio\" name=\"voteID\" value=\"".$row['voteID']."\"></td><td width=\"100%\"><span class=\"content\">".$row['optionText']."</span></td></tr>\n";
-            $sum += (int) $row['optionCount'];
+            if (is_numeric($sum)) # Fix Ernest Buffington ADD
+			$sum += (int) $row['optionCount'];
         }
         $button .= '<input type="hidden" name="pollID" value="'.$pollID.'">';
         $button .= '<input type="hidden" name="forwarder" value="'.$url.'">';
@@ -120,5 +124,4 @@ if ($db->sql_numrows($result) < 1) {
     }
     $content .= "</span></center></form>\n";
 }
-
 ?>

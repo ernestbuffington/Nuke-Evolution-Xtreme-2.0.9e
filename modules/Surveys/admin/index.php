@@ -118,7 +118,8 @@ if(is_mod_admin($module_name)) {
             ."| <a href=\"".$admin_file.".php?op=DeletePoll\">" . _DELETEPOLL . "</a> "
             ."| <a href=\"".$admin_file.".php?op=EditPoll\">" . _CHANGEPOLL . "</a> "
             ."| <a href=\"".$admin_file.".php?op=CreatePoll\">" . _ADDPOLL . "</a> "
-            ."]</center><br /><br />";
+            ."]</center><br />";
+			echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
         CloseTable();
     }
 
@@ -131,7 +132,7 @@ if(is_mod_admin($module_name)) {
       // Fetch number of days in between voting per user
       $number_of_days = intval($evoconfig['poll_days']);
 
-      echo "<br />";
+      //echo "<br />";
       OpenTable();
       echo "<center><span class='option'><strong>" . _POLL_OPTIONS . "</strong></span><br />"
           ."<br />" . _POLL_INFO . "<br /><br /></center>"
@@ -225,14 +226,14 @@ if(is_mod_admin($module_name)) {
         global $language, $admin, $multilingual, $prefix, $db, $admin_file;
         include_once(NUKE_BASE_DIR.'header.php');
         LoadJS();
-        OpenTable();
-	    echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
-        echo "<br /><br />";
-	    echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
-	    CloseTable();
-	    echo "<br />";
+        //OpenTable();
+	    //echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
+        //echo "<br /><br />";
+	    //echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
+	    //CloseTable();
+	    //echo "<br />";
         poll_index();
-        echo "<br />";
+        //echo "<br />";
         OpenTable();
         echo "<center><span class=\"option\"><strong>" . _CREATEPOLL . "</strong></span></center>"
 /*****[BEGIN]******************************************
@@ -372,14 +373,14 @@ if(is_mod_admin($module_name)) {
         global $prefix, $db, $admin_file, $multilingual;
 
         include_once(NUKE_BASE_DIR.'header.php');
-        OpenTable();
-	    echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
-        echo "<br /><br />";
-	    echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
-	    CloseTable();
-	    echo "<br />";
+        //OpenTable();
+	    //echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
+        //echo "<br /><br />";
+	    //echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
+	    //CloseTable();
+	    //echo "<br />";
         poll_index();
-        echo "<br />";
+        //echo "<br />";
         OpenTable();
         echo "<center><span class=\"option\"><strong>" . _REMOVEEXISTING . "</strong></span><br /><br />"
         ."" . _POLLDELWARNING . "</center><br /><br />"
@@ -417,14 +418,14 @@ if(is_mod_admin($module_name)) {
     function polledit_select() {
         global $prefix, $db, $admin_file, $multilingual;
         include_once(NUKE_BASE_DIR.'header.php');
-        OpenTable();
-	    echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
-        echo "<br /><br />";
-	    echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
-	    CloseTable();
-	    echo "<br />";
+        //OpenTable();
+	    //echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
+        //echo "<br /><br />";
+	    //echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
+	    //CloseTable();
+	    //echo "<br />";
         poll_index();
-        echo "<br />";
+        //echo "<br />";
         OpenTable();
         echo "<div style='margin: auto;'><span class=\"option\"><strong>" . _EDITPOLL . "</strong></span><br /><br />"
         ."" . _CHOOSEPOLLEDIT . "<br />"
@@ -454,24 +455,29 @@ if(is_mod_admin($module_name)) {
         global $prefix, $db, $multilingual, $admin_file;
 
         include_once(NUKE_BASE_DIR.'header.php');
-        OpenTable();
-	    echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
-        echo "<br /><br />";
-	    echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
-	    CloseTable();
-	    echo "<br />";
+        //OpenTable();
+	    //echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
+        //echo "<br /><br />";
+	    //echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
+	    //CloseTable();
+	    //echo "<br />";
         poll_index();
-        $pollID = intval($pollID);
+        
+		
+		
+		$pollID = intval($pollID);
         $row = $db->sql_fetchrow($db->sql_query("SELECT pollTitle, planguage FROM ".$prefix."_poll_desc WHERE pollID='$pollID'"));
         $pollTitle = $row['pollTitle'];
         $planguage = $row['planguage'];
-        echo "<br />";
+        //echo "<br />";
         OpenTable();
+		
         echo "<center><strong>"._POLLEDIT." $pollTitle</strong></center>";
         echo "<form action=\"".$admin_file.".php\" method=\"post\">";
         echo "<table border=\"0\" align=\"center\"><tr><td align=\"right\">";
         echo "<strong>" . _TITLE . ":</strong></td><td colspan=\"2\"><input type=\"text\" name=\"pollTitle\" value=\"$pollTitle\" size=\"40\" maxlength=\"100\"></td></tr>";
-        if ($multilingual == 1) {
+        
+		if ($multilingual == 1) {
             echo "<tr><td><strong>" . _LANGUAGE . ":</strong></td><td>"
                 ."<select name=\"planguage\">";
             $languages = lang_list();
@@ -521,12 +527,12 @@ if(is_mod_admin($module_name)) {
 
         case "Surveys";
             include_once(NUKE_BASE_DIR.'header.php');
-            OpenTable();
-	        echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
-            echo "<br /><br />";
-	        echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
-	        CloseTable();
-	        echo "<br />";
+            //OpenTable();
+	        //echo "<div align=\"center\">\n<a href=\"$admin_file.php?op=Surveys\">" . _POLL_ADMIN_HEADER . "</a></div>\n";
+            //echo "<br /><br />";
+	        //echo "<div align=\"center\">\n[ <a href=\"$admin_file.php\">" . _POLL_RETURNMAIN . "</a> ]</div>\n";
+	        //CloseTable();
+	        //echo "<br />";
             poll_index();
             poll_options();
             include_once(NUKE_BASE_DIR.'footer.php');
