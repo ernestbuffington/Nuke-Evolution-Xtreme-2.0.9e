@@ -111,41 +111,22 @@ echo '<td background="themes/'.$theme_name.'/header/left_side.gif"><img name="le
 echo '<td id="bg" class="flames" height"0" valign="top" >';
 
 # logo start
-echo '<div align="center" id="locator"><img src="themes/'.$theme_name.'/logo/the-86it-developers-network.png"></div>';
+if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0):
+echo '<div align="center" id="locator"><a class="greatminds" href="../../index.php"><img src="themes/'.$theme_name.'/logo/tsn_gold.png"></a></div>';
+endif;
 # logo end
-
-if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
-echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">XHTML 1.0 | curl 7.65.0 | MariaDB 10.1.40 | PHP 7.3.8</a></h1></div>';
-else
-if (strcmp($_SERVER['SERVER_NAME'], 'cvs.86it.us') == 0)
-echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">XHTML 1.0 | curl 7.65.0 | MariaDB 10.1.40 | PHP 7.0.33</a></h1></div>';
-else
-if (strcmp($_SERVER['SERVER_NAME'], 'hub.86it.us') == 0)
-echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">XHTML 1.0 | curl 7.65.0 | MariaDB 10.1.40 | PHP 7.3.8</a></h1></div>';
-else
-echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">XHTML 1.0 | curl 7.65.0 | MariaDB 10.1.40 | PHP 7.3.6</a></h1></div>';
-
-echo '<pre>'.' '.'</pre>';
-
-# start 3rd line of header
-if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
-echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>An Organized Social Syndicate</h3></div>';
-else
-echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""><h3>Great Minds Do Not Think Alike</h3></div>';
-# end 3rd line of header
-
-
-echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""></div>';
+//echo '<pre>'.' '.'</pre>';
+//echo '<div align="center" id="text"><img name="tbm" src="themes/'.$theme_name.'/header/invisible_pixel.gif" width="1" height="1" border="0" alt=""></div>';
 
 # start 4th line of header
-global $screen_res, $screen_width, $screen_height;
-echo '<div align="center" id="locator">Monitor Resolution '.$screen_res.'</div>';
+//global $screen_res, $screen_width, $screen_height;
+//echo '<div align="center" id="locator">Monitor Resolution '.$screen_res.'</div>';
 # end 4th line of header
 
-echo '<br />';
+//echo '<br />';
 
-$fart_toggle = '';
-echo $fart_toggle;
+//$fart_toggle = '';
+//echo $fart_toggle;
 
 # MENU SYSTEM
 #################################################################################################################################################
