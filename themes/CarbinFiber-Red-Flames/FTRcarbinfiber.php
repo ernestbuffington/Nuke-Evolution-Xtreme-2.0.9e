@@ -123,7 +123,7 @@ echo '<td background="themes/'.$theme_name.'/footer/left_side.gif"><img name="le
 
 echo '<td id="bg" class="flames" height"0" valign="top" >';
 
-echo '<div align="center" id="logo2"><img src="themes/'.$theme_name.'/logo/php-nuke-titanium.png"></div>';
+//echo '<div align="center" id="logo2"><img src="themes/'.$theme_name.'/logo/php-nuke-titanium.png"></div>';
 if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
 echo '<div align="center" id="text"><h1><a class="greatminds" href="../../index.php">The Scorpion Network</a></h1></div>';
 else

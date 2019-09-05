@@ -630,11 +630,21 @@ function index()
 					$bgcolor4, 
 				 $bgcolorhide, 
 		 $bgcolorhidefallback, 
+		         $currentlang,
 		          $textcolor1, 
 				         $key, 
 				   $deletecat, 
 				$upgrade_test, 
 				 $urlofimages;
+	
+	$result = $db->sql_query("SHOW TABLES LIKE '".$prefix."_menu'");
+	$tableExists = $db->sql_numrows($result);
+
+	if ($tableExists == 0)
+	{
+      MenuInstall();
+	  return;	
+    }	
 	
 	include_once("header.php");
 	
@@ -2084,24 +2094,176 @@ function deletecat()
 	}
 }
 
+function MenuInstall() 
+{
+	global  $admin_file, $prefix, $db, $domain;
+    $result = $db->sql_query("SHOW TABLES LIKE '".$prefix."_menu'");
+    $tableExists = $db->sql_numrows($result);
+	include("header.php");
+
+	if ($tableExists != 0)
+	{
+      index();
+	}
+	else
+	{
+      OpenTable();
+      if (is_mod_admin('admin')) 
+	  {
+		echo '<div align="center"><strong>'._MENU_THANKS.'</strong></div>';
+	    echo '<div align="center"><strong>'._MENU_INSTALL2.'</strong></div></br />';
+	    echo '<br>'._MENU_INSTALLING.'<br><br>' , PHP_EOL;
+		# START MENU TABLES INSTALL
+		# Drop table if there is one there already to avoid errors.
+	    echo 'I\'m going to drop the table "<strong>'.$prefix.'_menu</strong>" if it exists!' , PHP_EOL;
+	    echo '<br>' , PHP_EOL;
+	    echo 'If "<strong>'.$prefix.'_menu</strong>" did exist I have removed it!' , PHP_EOL;
+	    echo '<br>' , PHP_EOL;
+
+	    $db->sql_query("DROP TABLE IF EXISTS `".$prefix."_menu`");
+	
+	    # Lets create the new menu table
+        $result = $db->sql_query("CREATE TABLE IF NOT EXISTS `".$prefix."_menu` (
+        `groupmenu` int(2) NOT NULL DEFAULT '0',
+        `name` varchar(200) DEFAULT NULL,
+        `image` varchar(99) DEFAULT NULL,
+        `lien` text,
+        `hr` char(2) DEFAULT NULL,
+        `center` char(2) DEFAULT NULL,
+        `bgcolor` tinytext,
+        `invisible` int(1) DEFAULT NULL,
+        `class` tinytext,
+        `bold` char(2) DEFAULT NULL,
+        `new` char(2) DEFAULT NULL,
+        `listbox` char(2) DEFAULT NULL,
+        `dynamic` char(2) DEFAULT NULL,
+        `date_debut` bigint(20) NOT NULL DEFAULT '0',
+        `date_fin` bigint(20) NOT NULL DEFAULT '0',
+        `days` varchar(8) DEFAULT NULL,	
+        PRIMARY KEY (`groupmenu`)
+        ) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
+ 	 
+	    echo '<br>' , PHP_EOL
+        , 'Create table '.$prefix.'_menu:' , PHP_EOL;
+        
+		if($result)
+		{
+     	  echo'<span style="color:#008000;"><i>Success</i></span><br>' , PHP_EOL;
+        }
+		else
+		{
+     	  echo'<span style="color:#FF0000;"><i>Failed</i></span><br>' , PHP_EOL;
+        }
+	    echo '' , PHP_EOL
+	    , _MENU_INSERT_DATA , PHP_EOL;
+        
+		# Lets insert the data into the table
+        $result = $db->sql_query("INSERT INTO `".$prefix."_menu` (`groupmenu`, `name`, `image`, `lien`, `hr`, `center`, `bgcolor`, `invisible`, `class`, `bold`, `new`, `listbox`, `dynamic`, `date_debut`, `date_fin`, `days`) VALUES
+        (1, 'Blog Menu', 'community.png', '', 'on', '', '', 0, 'categories', 'on', '', '', '', 0, 0, ''),
+	    (99, '', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'on', 0, 0, NULL);");
+	    
+		echo '<br>' , PHP_EOL
+        , 'Insert data into '.$prefix.'_menu:' , PHP_EOL;
+        
+		if($result)
+		{
+	      echo'<span style="color:#008000;"><i>Success</i></span><br>' , PHP_EOL;
+        }
+		else
+		{
+	      echo'<span style="color:#FF0000;"><i>Failed</i></span><br>' , PHP_EOL;
+        }
+        # END MENU TABLES INSTALL
+
+		echo '<br />' , PHP_EOL;
+
+	    # START MENU CATEGORIES TABLES INSTALL
+		# Drop table if there is one there already to avoid errors.
+	    echo 'I\'m going to drop the table "<strong>'.$prefix.'_menu_categories</strong>" if it exists!' , PHP_EOL;
+	    echo '<br>' , PHP_EOL;
+	    echo 'If "<strong>'.$prefix.'_menu_categories</strong>" did exist I have removed it!' , PHP_EOL;
+	    echo '<br>' , PHP_EOL;
+
+	    $db->sql_query("DROP TABLE IF EXISTS `".$prefix."_menu_categories`");
+	
+	    # Lets create the new menu table
+        $result = $db->sql_query("CREATE TABLE IF NOT EXISTS `".$prefix."_menu_categories` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `date_fin` bigint(20) NOT NULL DEFAULT '0',
+        `date_debut` bigint(20) NOT NULL DEFAULT '0',
+        `sublevel` tinyint(3) NOT NULL DEFAULT '0',
+        `groupmenu` int(2) NOT NULL DEFAULT '0',
+        `module` varchar(50) NOT NULL DEFAULT '',
+        `url` text NOT NULL,
+        `url_text` text NOT NULL,
+        `image` varchar(50) NOT NULL DEFAULT '',
+        `new` char(2) DEFAULT NULL,
+        `new_days` tinyint(4) NOT NULL DEFAULT '-1',
+        `class` varchar(20) DEFAULT NULL,
+        `bold` char(2) DEFAULT NULL,
+        `days` varchar(8) NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`)
+        ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;");
+ 	 
+	    echo '' , PHP_EOL
+        , 'Create table '.$prefix.'_menu_categories:' , PHP_EOL;
+        
+		if($result)
+		{
+     	  echo'<span style="color:#008000;"><i>Success</i></span><br>' , PHP_EOL;
+        }
+		else
+		{
+     	  echo'<span style="color:#FF0000;"><i>Failed</i></span><br>' , PHP_EOL;
+        }
+	    echo '<br>' , PHP_EOL
+	    , _MENU_INSERT_DATA , PHP_EOL;
+        
+		# Lets insert the data into the table
+        $result = $db->sql_query("INSERT INTO `".$prefix."_menu_categories` (`id`, `date_fin`, `date_debut`, `sublevel`, `groupmenu`, `module`, `url`, `url_text`, `image`, `new`, `new_days`, `class`, `bold`, `days`) VALUES
+        (1, 0, 0, 0, 1, 'Blog_Topics', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+        (2, 0, 0, 0, 1, 'Blog_Archive', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+        (3, 0, 0, 0, 1, 'Blog_Top', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+	    (4, 0, 0, 0, 1, 'Blog_Submit', '', '', 'tree-L.png', '', 3, 'modules', 'on', '');");
+	    
+		echo '<br>' , PHP_EOL
+        , 'Insert data into '.$prefix.'_menu_categories:' , PHP_EOL;
+        
+		if($result)
+		{
+	      echo'<span style="color:#008000;"><i>Success</i></span><br>' , PHP_EOL;
+        }
+		else
+		{
+	      echo'<span style="color:#FF0000;"><i>Failed</i></span><br>' , PHP_EOL;
+        }
+        # START MENU CATEGORIES TABLES INSTALL
+		echo '<br /><strong>'._MENU_COMPLETE.'</strong><br /><br />';
+		header('Refresh: 30; URL=https://'.$domain.'/admin.php?op=menu');
+		echo '<div align="center"><strong><a href="https://'.$domain.'/admin.php?op=menu">[ BACK TO PORTAL ADMIN MENU ]</a></strong></div><br /><br />';
+		
+	  CloseTable();		
+	}
+
+  }
+   include("footer.php");
+}
+
 switch($go) 
 {
 	default:
-	index();
+	case "Menu":
+	MenuInstall();
 	break;
-
 	case "send":
 	send();
 	break;
-
 	case "deletecat":
 	deletecat();
 	break;
-
 	case "edit":
 	edit();
 	break;
-	
 	case "schedule":
 	menu_schedule();
 	break;
