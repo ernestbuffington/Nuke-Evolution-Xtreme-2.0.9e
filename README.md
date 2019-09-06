@@ -1,5 +1,6 @@
-# Nuke-Evolution-Xtreme-2.0.9e
- Original Nuke-Evolution Xtreme 2.0.9e Modified by **Ernest Allen Buffington**<br />
+# PHP-Nuke Titanium v3.0.0 using the Nuke-Evolution-Xtreme-2.0.9e Core
+ Original Nuke-Evolution Xtreme 2.0.9e Core Modified by **Ernest Allen Buffington**<br />
+ For **The Scorpin Network**<br /> 
 <br /> 
 **Saying goodbye to Flash**<br />
 For 20 years, Flash has helped shape the way that you play games, watch videos and run applications on the web. But over the last few years, Flash has become less common. Three years ago, 80 percent of desktop Chrome users visited a site with Flash each day. Today usage is only 17 percent and continues to decline.<br />
