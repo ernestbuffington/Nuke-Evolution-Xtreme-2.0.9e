@@ -23,5 +23,4 @@ if(!defined('NUKE_EVO')) exit;
 if(is_active('Surveys')) {
     include_once(NUKE_MODULES_DIR.'Surveys/includes/pollblock.php');
 }
-
 ?>

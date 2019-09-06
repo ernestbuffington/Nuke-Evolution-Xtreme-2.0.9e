@@ -80,7 +80,7 @@ define("_BLOCKPROBLEM2","There isn't content right now for this block.");
 define("_SELECTGUILANG","Select Interface Language:");
 define("_COMMENTS","comments");
 define("_READS","reads");
-define("_MORENEWS","More in News Section");
+define("_MORENEWS","More in Blogs Section");
 
 define("_NEWSLETTERBLOCKSUBSCRIBED", "You are subscribed to the newsletter");
 define("_NEWSLETTERBLOCKREGISTER", "You must register to receive the newsletter");
