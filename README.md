@@ -1,4 +1,6 @@
 # PHP-Nuke Titanium v3.0.0<br />
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fernestbuffington%2FNuke-Evolution-Xtreme-2.0.9e.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fernestbuffington%2FNuke-Evolution-Xtreme-2.0.9e?ref=badge_shield)
+
 Original Nuke-Evolution Xtreme 2.0.9e Core<br /> 
 Modified by **Ernest Allen Buffington**<br />
  For **The Scorpion Network**<br /> 
@@ -15,3 +17,7 @@ If you regularly visit a site that uses Flash today, you may be wondering how th
 It’s taken a lot of close work with Adobe, other browsers, and major publishers to make sure the web is ready to be Flash-free. We’re NOT supportive of Adobe’s announcement, and we MIGHT stop usng Chrome as a result. Many programmers spent hundreds of hours writing flash games and there just is no reason to 86it completely, it's a brash move on Googles part and is going to upset a lot of people.<br />
 <br />
 With this being said the Flash Arcade in Nuke-Evolution Xtreme will no longer function after the END of 2020.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fernestbuffington%2FNuke-Evolution-Xtreme-2.0.9e.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fernestbuffington%2FNuke-Evolution-Xtreme-2.0.9e?ref=badge_large)
