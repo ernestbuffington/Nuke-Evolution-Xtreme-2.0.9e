@@ -1,6 +1,6 @@
 <?php
 /*=======================================================================
- Nuke-Evolution Basic: Enhanced PHP-Nuke Web Portal System
+ PHP-Nuke Titanium v3.0.0 : Enhanced PHP-Nuke Web Portal System
  =======================================================================*/
 
 /************************************************************************/
@@ -28,11 +28,10 @@
       Extended Surveys Admin Interface         v1.0.0       08/24/2005
  ************************************************************************/
 
-if (!defined('MODULE_FILE')) {
-    die('You can\'t access this file directly...');
-}
+if (!defined('MODULE_FILE')) die('You can\'t access this file directly...');
 
 $module_name = basename(dirname(__FILE__));
+
 get_lang($module_name);
 
 if(isset($pollID)) $pollID = intval($pollID);
@@ -136,12 +135,6 @@ else
 {
     include_once(NUKE_BASE_DIR.'header.php');
     
-	//OpenTable();
-    
-	//echo "<div align=\"center\"><span class=\"option\"><strong>"._CURRENTSURVEY."</strong></span></div>";
-    
-	//CloseTable();
-    
 	echo "<table border=\"0\" align=\"center\"><tr><td>";
     
 	pollMain(pollLatest());
@@ -154,7 +147,6 @@ else
 /*********************************************************/
 /* Functions                                             */
 /*********************************************************/
-
 function pollMain($pollID) 
 {
     global $boxTitle, $boxContent, $pollcomm, $user, $prefix, $db, $module_name;
@@ -169,7 +161,8 @@ function pollMain($pollID)
 	themesidebox(_SURVEY, $content, $pollID);
 }
 
-function pollLatest() {
+function pollLatest() 
+{
     global $prefix, $multilingual, $currentlang, $db;
     $querylang = "";
     if ($multilingual) { $querylang = "AND planguage='$currentlang' OR planguage=''"; }
@@ -179,7 +172,8 @@ function pollLatest() {
     return($pollID[0]);
 }
 
-function pollCollector($pollID, $voteID, $forwarder) {
+function pollCollector($pollID, $voteID, $forwarder) 
+{
     global $prefix, $db, $evoconfig, $identify;
     $ip = $identify->get_ip();
     $number_of_days = intval($evoconfig['poll_days']);
@@ -188,11 +182,15 @@ function pollCollector($pollID, $voteID, $forwarder) {
     $result = $db->sql_query("SELECT ip FROM ".$prefix."_poll_check WHERE ip='$ip' AND pollID='$pollID'");
     list($ips) = $db->sql_fetchrow($result);
     $db->sql_freeresult($result);
-    if ($ip != $ips) {
+
+    if ($ip != $ips) 
+	{
         $ctime = time();
         $db->sql_query("INSERT INTO ".$prefix."_poll_check (ip, time, pollID) VALUES ('$ip', '$ctime', '$pollID')");
         $db->sql_query("UPDATE ".$prefix."_poll_data SET optionCount=optionCount+1 WHERE pollID='$pollID' AND voteID='$voteID'");
-        if (!empty($voteID)) {
+    
+	    if (!empty($voteID)) 
+		{
             $db->sql_query("UPDATE ".$prefix."_poll_desc SET voters=voters+1 WHERE pollID='$pollID'");
         }
     }
@@ -200,7 +198,8 @@ function pollCollector($pollID, $voteID, $forwarder) {
     exit;
 }
 
-function pollList() {
+function pollList() 
+{
     global $user, $prefix, $multilingual, $currentlang, $admin, $db, $module_name, $admin_file;
 
     $r_options = '';
@@ -213,10 +212,19 @@ function pollList() {
     echo "<center><span class=\"title\"><strong>"._PASTSURVEYS."</strong></span></center>";
     echo "<table border=\"0\" cellpadding=\"8\"><tr><td>";
     $querylang = "";
-    if ($multilingual) { $querylang = "AND planguage='$currentlang' OR planguage=''"; }
+
+    if ($multilingual) 
+	{ 
+	  $querylang = "AND planguage='$currentlang' OR planguage=''"; 
+	}
     $result = $db->sql_query("SELECT pollID, pollTitle, voters FROM ".$prefix."_poll_desc WHERE artid='0' $querylang ORDER BY timeStamp DESC");
-    while(list($plID, $plTitle, $voters) = $db->sql_fetchrow($result)) {
-        if (is_mod_admin($module_name)) { $editing = ' - <a href="'.$admin_file.'.php?op=PollEdit&amp;pollID='.$plID.'">Edit</a>'; }
+    
+	while(list($plID, $plTitle, $voters) = $db->sql_fetchrow($result)) 
+	{
+        if (is_mod_admin($module_name)) 
+		{ 
+		  $editing = ' - <a href="'.$admin_file.'.php?op=PollEdit&amp;pollID='.$plID.'">Edit</a>'; 
+		}
         echo "<img src=\"images/arrow.gif\" border=\"0\" alt=\"\" title=\"\" width=\"9\" height=\"9\">&nbsp;<a href=\"modules.php?name=$module_name&amp;pollID=$plID\">$plTitle</a> ";
         echo "(<a href=\"modules.php?name=$module_name&amp;op=results&amp;pollID=$plID$r_options\">"._RESULTS."</a> - $voters "._LVOTES."$editing)<br />\n";
     }
@@ -240,7 +248,7 @@ function pollResults($pollID)
     $db->sql_freeresult($result);
     echo "<table border=\"0\">";
 
-    /* cycle through all options */
+    # cycle through all options 
     $result = $db->sql_query("SELECT optionText, optionCount FROM ".$prefix."_poll_data WHERE pollID='$pollID' AND optionText!='' ORDER BY voteID");
     
 	while(list($optionText, $optionCount) = $db->sql_fetchrow($result)) 
@@ -342,3 +350,4 @@ function pollResults($pollID)
     return(1);
 }
 ?>
+
