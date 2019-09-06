@@ -1,5 +1,5 @@
 # PHP-Nuke Titanium v3.0.0<br />
-Original Nuke-Evolution Xtreme 2.0.9e Core<br / 
+Original Nuke-Evolution Xtreme 2.0.9e Core<br /> 
 Modified by **Ernest Allen Buffington**<br />
  For **The Scorpin Network**<br /> 
 <br /> 
