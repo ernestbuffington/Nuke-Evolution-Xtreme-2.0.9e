@@ -1,9 +1,9 @@
 # PHP-Nuke Titanium v3.0.0<br />
 Original Nuke-Evolution Xtreme 2.0.9e Core<br /> 
 Modified by **Ernest Allen Buffington**<br />
- For **The Scorpion Network**<br /> 
+ For **The Scorpion Network**<br /><br /> 
  [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fernestbuffington%2FNuke-Evolution-Xtreme-2.0.9e.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fernestbuffington%2FNuke-Evolution-Xtreme-2.0.9e?ref=badge_shield)
-<br /> 
+<br /><br /> 
 **Saying goodbye to Flash**<br />
 For 20 years, Flash has helped shape the way that you play games, watch videos and run applications on the web. But over the last few years, Flash has become less common. Three years ago, 80 percent of desktop Chrome users visited a site with Flash each day. Today usage is only 17 percent and continues to decline.<br />
 <br />
