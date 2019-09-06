@@ -596,8 +596,8 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 			      $uid, 
 			 $ThemeSel;
 	
-	$align = 'absmiddle'; //added by Ernest Buffingtn to align the new.gif image
-	$aligncat = 'style="text-align:left"'; //added by Ernest Buffingtn to align the link text left (not sure I needed it just a temp hack)
+	$align = 'absmiddle'; # added by Ernest Buffingtn to align the new.gif image
+	$aligncat = 'style="text-align:left"'; # added by Ernest Buffingtn to align the link text left
 	
     list($portaladminname, 
 	              $avatar, 
@@ -628,6 +628,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
       $content.= "<div class=\"supersmall\" align=\"center\"><font size=\"1\" color=\"$textcolor2\"><strong>Owns This 86it Portal</strong></font></div>\n";
 	}
 
+    $content .= "<br />";
 	$content .= "<img align=\"$align\" src=\"images/menu/home.gif\" border=0 title=\""._MENU_NEWCONTENT."\" alt=\""._MENU_NEWCONTENT."\">";
 	if (strcmp($_SERVER['SERVER_NAME'], 'the.scorpion.network') == 0)
 	$content .= "<a href=\"index.php\"><strong> TSN Home</strong></a>";
@@ -1373,7 +1374,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 					}
 				}
 				else
-				if($nomdumodule=="Content" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
+				if($nomdumodule == "Content" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
 				{
 				    $where = (preg_match("/^cid=[0-9]*$/",$temponomdumodule[2])) ? " WHERE $temponomdumodule[2]" : "";
 					$sqlimgnew="SELECT date FROM ".$prefix."_pages".$where." order by date desc limit 1";
@@ -1393,7 +1394,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 					}
 				}
 				else
-				if($nomdumodule=="Reviews" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
+				if($nomdumodule == "Reviews" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
 				{
 					$where = "";
 					$sqlimgnew="SELECT date FROM ".$prefix."_reviews".$where." order by date desc limit 1";
@@ -1413,7 +1414,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 					}
 				}
 				else # News module
-				if($nomdumodule=="News" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
+				if($nomdumodule == "News" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
 				{
 				    global $db, $prefix;
 					
@@ -1438,7 +1439,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 					}
 				}
 				else # Blog module
-				if($nomdumodule=="Blog" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
+				if($nomdumodule == "Blog" && $newdaysinthisgroup[$som_groupmenu][$keyinthisgroup]!="-1") 
 				{
 				    global $db, $prefix;
 					
@@ -1471,7 +1472,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 				
 				if($sublevelinthisgroup[$som_groupmenu][$keyinthisgroup]>$current_sublevel) 
 				{
-					if($imageinthisgroup[$som_groupmenu][$keyinthisgroup-1]=='tree-T.png') 
+					if($imageinthisgroup[$som_groupmenu][$keyinthisgroup-1] == 'tree-T.png') 
 					{
 						$zebar="background: url($path_icon/categories/bar.gif) right top repeat-y;";
 					}
@@ -1496,7 +1497,8 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 					$id_sublevel_img="";
 					$current_sublevel++;
 				}
-				//sublevels - showhide
+				
+				# sublevels - showhide
 				if($keyinthisgroup<count($moduleinthisgroup[$som_groupmenu])-1 && $sublevelinthisgroup[$som_groupmenu][$keyinthisgroup]<$sublevelinthisgroup[$som_groupmenu][$keyinthisgroup+1]) 
 				{
 					$ligne=($som_dynamic=='on') ? "<tr style=\"cursor: pointer;\" onclick=\"menu_showhide('menusublevel-$som_groupmenu-".($keyinthisgroup+1)."','ok','menuupdown-sublevel-$som_groupmenu-".($keyinthisgroup+1)."');\">" : "<tr>"; // onclick=\"menu_showhide('menusublevel-$som_groupmenu-$keyinthisgroup','ok','menuupdown-sublevel-$som_groupmenu-$keyinthisgroup');\"
@@ -1559,8 +1561,8 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 					}
 				}
 
-				//sublevels - ferme
-				if($keyinthisgroup==count($moduleinthisgroup[$som_groupmenu])-1) 
+				# sublevels - ferme
+				if($keyinthisgroup == count($moduleinthisgroup[$som_groupmenu])-1) 
 				{
 					for($sub=0;$sub<$current_sublevel;$sub++) 
 					{
@@ -1612,7 +1614,7 @@ echo "<!--  END Titanium Portal Menu Javascript Functions v5.01 -->\n\n\n\n";
 	
 		if($som_groupmenu == 99 && $is_admin==1 && $horizontal!=1) 
 		{ 
-			if($som_name!="menunoadmindisplay") 
+			if($som_name != "menunoadmindisplay") 
 			{
 				$showadmin=1;
 				$content.="<tr><td>";
