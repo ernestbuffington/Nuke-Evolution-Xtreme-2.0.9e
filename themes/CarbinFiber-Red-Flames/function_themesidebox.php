@@ -33,13 +33,13 @@ if (realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
 }
 
 /*--------------------------*/
-/* 
+/* function themesidebox 
 /*--------------------------*/
 function themesidebox($title, $content, $bid = 0) 
 {
 global $theme_name;
 
-echo '<aside>'; //side block class to add flames to bottom and glass curve to top
+echo '<aside>'; # side block class to add flames to bottom and glass curve to top
 echo '<table class="sideblock" border="0" width="320px" cellspacing="0" cellpadding="0">';
 echo '';
 echo '<tr>';
