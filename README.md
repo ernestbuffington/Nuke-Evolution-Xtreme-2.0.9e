@@ -1,5 +1,6 @@
-# PHP-Nuke Titanium v3.0.0 using the Nuke-Evolution-Xtreme-2.0.9e Core
- Original Nuke-Evolution Xtreme 2.0.9e Core Modified by **Ernest Allen Buffington**<br />
+# PHP-Nuke Titanium v3.0.0<br />
+Original Nuke-Evolution Xtreme 2.0.9e Core<br / 
+Modified by **Ernest Allen Buffington**<br />
  For **The Scorpin Network**<br /> 
 <br /> 
 **Saying goodbye to Flash**<br />
