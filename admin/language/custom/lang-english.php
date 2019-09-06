@@ -27,7 +27,7 @@
       Database Manager                         v2.0.0       12/17/2005
 	  CalendarMx                               v1.4.0       05/29/2009
 ************************************************************************/
-/*    Please put all your custom language or translations here     */
+# Please put all your custom language or translations here 
 define('_BOTH', 'Both');
 define('_ERROR_DELETE_CONF','Are you sure that you want to delete %s?');
 define('_BLOCKTOP','Move block to top');
