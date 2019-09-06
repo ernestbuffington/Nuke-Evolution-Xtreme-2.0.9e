@@ -1838,9 +1838,10 @@ function menu_schedule() {
 		}
 		
 		include_once("themes/$zetheme/theme.php");
-		echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">
-		<html><head><title>"._MENU_SCHEDULETITLE."...</title>
-		<LINK REL=\"StyleSheet\" HREF=\"themes/$zetheme/style/style.css\" TYPE=\"text/css\">";
+	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+		<html><head><title>"._MENU_EDITLINKTITLE."</title>
+		<LINK REL=\"StyleSheet\" HREF=\"themes/$zetheme/style/style.css\" TYPE=\"text/css\"></head>
+		<body>";
 		?>
 		<script type="text/javascript" language="javascript">
 		function display_schedule(zeinput) {
@@ -1922,17 +1923,17 @@ function menu_schedule() {
 			$option_ms_fin.="<option value=\"".$zeoption."\"".$selected_fin.">".$zeoption."</option>";
 
 		}
-		$hidecheck=(strpos($_GET['days'],'8')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
+		$hidecheck=(strpos($_GET['days'],'8')!==false) ? "checked " : ""; 
 		$schedulecheck=($_GET['date_debut']!=0 && $_GET['date_fin']!=0) ? "checked " : "";
 		$scheduledisplay=($_GET['date_debut']!=0 && $_GET['date_fin']!=0) ? 'block' : 'none';
 		
-		$monday_check=(strpos($_GET['days'],'1')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
-		$tuesday_check=(strpos($_GET['days'],'2')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
-		$wednesday_check=(strpos($_GET['days'],'3')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
-		$thursday_check=(strpos($_GET['days'],'4')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
-		$friday_check=(strpos($_GET['days'],'5')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
-		$saturday_check=(strpos($_GET['days'],'6')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
-		$sunday_check=(strpos($_GET['days'],'7')!==false) ? "checked " : ""; // le !== (2=) est nécessaire
+		$monday_check=(strpos($_GET['days'],'1')!==false) ? "checked " : ""; 
+		$tuesday_check=(strpos($_GET['days'],'2')!==false) ? "checked " : ""; 
+		$wednesday_check=(strpos($_GET['days'],'3')!==false) ? "checked " : ""; 
+		$thursday_check=(strpos($_GET['days'],'4')!==false) ? "checked " : ""; 
+		$friday_check=(strpos($_GET['days'],'5')!==false) ? "checked " : ""; 
+		$saturday_check=(strpos($_GET['days'],'6')!==false) ? "checked " : ""; 
+		$sunday_check=(strpos($_GET['days'],'7')!==false) ? "checked " : ""; 
 		echo "</td>
 		<td><input type=\"checkbox\" ".$hidecheck."name=\"menu_schedule_hide\" id=\"hide\" OnClick=\"if(this.checked==true) {document.getElementById('schedule').checked=false;document.getElementById('schedule_table').style.display='none'}\"><LABEL for=\"hide\">"._MENU_HIDE."</LABEL>
 			<br>
@@ -2049,10 +2050,10 @@ function menu_schedule() {
 			echo "<script type=\"text/javascript\" language=\"javascript\">menu_hidelink($key,$z,'".$sens."',opener.document);</script>";
 		}
 		
-		echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">
-			<html><head><title>".__MENU_SCHEDULETITLE."</title>
-			<LINK REL=\"StyleSheet\" HREF=\"themes/$zetheme/style/style.css\" TYPE=\"text/css\"></head>
-			<body>";
+	    echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+		<html><head><title>"._MENU_EDITLINKTITLE."</title>
+		<LINK REL=\"StyleSheet\" HREF=\"themes/$zetheme/style/style.css\" TYPE=\"text/css\"></head>
+		<body>";
 		//echo "key:$key - z:$z - $menu_link_class - $menu_new_days - $somlienid - $menu_category_class<br>";
 		echo "<br><br><div align=\"center\"><span  class=\"title\">"._MENU_MOREOPTIONSUCCESS."</span><br>"._MENU_SENDTOVALIDATE."<br><br><br><br><br><br><div align=\"center\" class=\"title\">[<a href=\"javascript:window.close()\">"._MENU_CLOSE."</a>]</div>";
 		echo"</body></html>";
@@ -2060,9 +2061,7 @@ function menu_schedule() {
 	}
 }
 
-//
-//
-
+# delete menu category
 function deletecat() 
 {
 	global $admin_file;
@@ -2203,7 +2202,7 @@ function MenuInstall()
         `bold` char(2) DEFAULT NULL,
         `days` varchar(8) NOT NULL DEFAULT '0',
         PRIMARY KEY (`id`)
-        ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;");
+        ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;");
  	 
 	    echo '' , PHP_EOL
         , 'Create table '.$prefix.'_menu_categories:' , PHP_EOL;
@@ -2221,10 +2220,11 @@ function MenuInstall()
         
 		# Lets insert the data into the table
         $result = $db->sql_query("INSERT INTO `".$prefix."_menu_categories` (`id`, `date_fin`, `date_debut`, `sublevel`, `groupmenu`, `module`, `url`, `url_text`, `image`, `new`, `new_days`, `class`, `bold`, `days`) VALUES
-        (1, 0, 0, 0, 1, 'Blog_Topics', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
-        (2, 0, 0, 0, 1, 'Blog_Archive', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
-        (3, 0, 0, 0, 1, 'Blog_Top', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
-	    (4, 0, 0, 0, 1, 'Blog_Submit', '', '', 'tree-L.png', '', 3, 'modules', 'on', '');");
+        (1, 0, 0, 0, 1, 'Blog', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+		(2, 0, 0, 0, 1, 'Blog_Topics', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+        (3, 0, 0, 0, 1, 'Blog_Archive', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+        (4, 0, 0, 0, 1, 'Blog_Top', '', '', 'tree-T.png', '', 3, 'modules', 'on', ''),
+	    (5, 0, 0, 0, 1, 'Blog_Submit', '', '', 'tree-L.png', '', 3, 'modules', 'on', '');");
 	    
 		echo '<br>' , PHP_EOL
         , 'Insert data into '.$prefix.'_menu_categories:' , PHP_EOL;
