@@ -177,7 +177,10 @@ switch($op)
      */
     if (get_evo_option('iphub_status', 'int') == 1):  
         // include_once(NUKE_BASE_DIR.'header.php');  
-        block_vpn_proxy_user();
+		
+        //block_vpn_proxy_user(); # Had to comment this out and I'm not sure why the 2.0.9e code was released with this bug!
+		                          # Ernest Allen Buffington 09/07/2019
+								  
         // include_once(NUKE_BASE_DIR.'footer.php');
     endif;
 

@@ -152,7 +152,7 @@ class BBCode {
 			// $text = preg_replace_callback("(\[img\](.*?)\[/img\])is", create_function('$m','return "<img src=\"".$m[1]."\" border=\"0\" alt=\"\" />";'), $text);
 
 
-			$text = preg_replace_callback("(\[img\](.*?)\[/img\])is", function($m) { return '<div class="reimg-loading"></div><img class="reimg" onload="reimg(this);" onerror="reimg(this);" src="'.$m[1].'" border="0" alt="" />'; }, $text);
+			$text = preg_replace_callback("(\[img\](.*?)\[/img\])is", function($m) { return '<div align="center" class="reimg-loading"></div><img class="reimg" onload="reimg(this);" onerror="reimg(this);" src="'.$m[1].'" border="0" alt="" />'; }, $text);
 
 
 			

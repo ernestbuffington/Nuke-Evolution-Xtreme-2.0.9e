@@ -52,6 +52,25 @@ function head()
     // echo "<html lang=\""._LANGCODE."\" dir=\""._LANG_DIRECTION."\">\n";
     echo '<head>'."\n";
 
+    # START uploadcare PLUGIN for CKeditor 4 - 09/07/2019
+    echo "\n\n<!-- START uploadcare -->\n\n";
+    echo "<script type=\"text/javascript\">\n";
+    echo "UPLOADCARE_PUBLIC_KEY = 'df691884c0a749427aa1';\n";
+    echo "UPLOADCARE_TABS = 'file camera url facebook gdrive gphotos dropbox instagram evernote flickr onedrive box vk huddle';\n";
+    echo "UPLOADCARE_EFFECTS = 'crop,rotate,mirror,flip,enhance,sharp,blur,grayscale,invert';\n";
+    echo "UPLOADCARE_PREVIEW_STEP = true;\n";
+    echo "UPLOADCARE_CLEARABLE = true;\n";
+    echo "</script>\n";
+
+    echo "<script src=\"https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js\"></script>\n";
+    echo "<script src=\"https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js\"></script>\n";
+        
+    echo "<script type=\"text/javascript\">\n";
+    echo "uploadcare.registerTab('preview', uploadcareTabEffects)\n";
+    echo "</script>\n";
+    echo "\n\n<!-- END uploadcare -->\n\n";
+	# START uploadcare PLUGIN for CKeditor 4 - 09/07/2019
+
     # function to grab the page title.
     the_pagetitle();
 

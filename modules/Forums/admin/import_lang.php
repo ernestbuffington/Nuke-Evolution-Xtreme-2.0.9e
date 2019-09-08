@@ -23,7 +23,7 @@
 *
 ***************************************************************************/
 
-global $directory_mode;
+global $directory_mode;
 
 define('IN_PHPBB', true);
 
